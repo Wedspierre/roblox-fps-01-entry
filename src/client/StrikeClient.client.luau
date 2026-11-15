@@ -12,6 +12,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
+local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
@@ -226,7 +227,7 @@ startHow.Size = UDim2.new(1, -60, 0, 130)
 local startButton = StrikeGui.newButton("StartButton", startPanel, "▶  START", Palette.Cyan, 34)
 startButton.Position = UDim2.new(0.5, -160, 1, -100)
 startButton.Size = UDim2.new(0, 320, 0, 64)
-local startHint = StrikeGui.newLabel("Hint", startPanel, "The arena is behind this menu — look around after you start.", 14, Palette.DimText)
+local startHint = StrikeGui.newLabel("Hint", startPanel, "v2 — click START, then look around with the mouse.", 14, Palette.DimText)
 startHint.Position = UDim2.new(0, 0, 1, -28)
 startHint.Size = UDim2.new(1, 0, 0, 20)
 
@@ -428,12 +429,18 @@ RunService.RenderStepped:Connect(function()
 	else
 		statusLabel.Text = ""
 	end
-	-- Mouse lock follows the phase: locked while playing so the view
-	-- turns with the mouse, free on menus so START / PLAY AGAIN
-	-- can be clicked.
-	if snap.phase ~= lastPhase then
+	-- Mouse lock: enforce every frame while playing (the engine can
+	-- drop the lock on its own in Studio, so a one-time set is not
+	-- enough). Free on menus so START / PLAY AGAIN can be clicked.
+	-- Skip while the Roblox menu is open (Esc) so it stays usable.
+	if snap.phase == "playing" or snap.phase == "intermission" then
+		if not GuiService.MenuIsOpen then
+			UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
+		end
 		lastPhase = snap.phase
-		setMouseLock(snap.phase == "playing" or snap.phase == "intermission")
+	elseif snap.phase ~= lastPhase then
+		lastPhase = snap.phase
+		setMouseLock(false)
 	end
 	-- Screen visibility by phase.
 	local inMenu = snap.phase == "menu"

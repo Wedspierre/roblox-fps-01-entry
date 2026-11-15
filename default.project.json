@@ -69,9 +69,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.58,
-      0.46,
-      0.32
+      0.62,
+      0.5,
+      0.36
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -177,6 +177,106 @@
      "Position": [
       -69.5,
       0.4,
+      0
+     ],
+     "Size": [
+      1,
+      0.8,
+      140
+     ],
+     "Transparency": 0.1
+    }
+   },
+   "TrimTopN": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0,
+      0.85,
+      1
+     ],
+     "Locked": true,
+     "Material": "Neon",
+     "Position": [
+      0,
+      8,
+      -69.5
+     ],
+     "Size": [
+      140,
+      0.8,
+      1
+     ],
+     "Transparency": 0.1
+    }
+   },
+   "TrimTopS": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0,
+      0.85,
+      1
+     ],
+     "Locked": true,
+     "Material": "Neon",
+     "Position": [
+      0,
+      8,
+      69.5
+     ],
+     "Size": [
+      140,
+      0.8,
+      1
+     ],
+     "Transparency": 0.1
+    }
+   },
+   "TrimTopE": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0,
+      0.85,
+      1
+     ],
+     "Locked": true,
+     "Material": "Neon",
+     "Position": [
+      69.5,
+      8,
+      0
+     ],
+     "Size": [
+      1,
+      0.8,
+      140
+     ],
+     "Transparency": 0.1
+    }
+   },
+   "TrimTopW": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0,
+      0.85,
+      1
+     ],
+     "Locked": true,
+     "Material": "Neon",
+     "Position": [
+      -69.5,
+      8,
       0
      ],
      "Size": [
@@ -937,7 +1037,7 @@
      "Position": [
       0,
       1,
-      45
+      0
      ],
      "Size": [
       8,

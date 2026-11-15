@@ -47,7 +47,6 @@ local lastPhase = "menu"
 local curWeapon = 1
 local recoil = 0
 local bobPhase = 0
-local crossGap = 5
 local scorePop = 0
 local lastScoreShown = 0
 local lastHitPoint: Vector3? = nil
@@ -77,24 +76,14 @@ crosshair.Size = UDim2.new(0, 24, 0, 24)
 crosshair.Position = UDim2.new(0.5, -12, 0.5, -12)
 crosshair.BackgroundTransparency = 1
 crosshair.Parent = root
-local crossLines = {}
-local function crossLine(x, y, w, h)
-	local line = Instance.new("Frame")
-	line.BackgroundColor3 = Palette.White
-	line.BorderSizePixel = 0
-	line.Parent = crosshair
-	place(line, x, y, w, h)
-	return line
-end
-crossLines.top = crossLine(11, 0, 2, 8)
-crossLines.bottom = crossLine(11, 16, 2, 8)
-crossLines.left = crossLine(0, 11, 8, 2)
-crossLines.right = crossLine(16, 11, 8, 2)
 local dot = Instance.new("Frame")
 dot.BackgroundColor3 = Palette.Cyan
 dot.BorderSizePixel = 0
 dot.Parent = crosshair
-place(dot, 11, 11, 2, 2)
+place(dot, 9, 9, 6, 6)
+local dotCorner = Instance.new("UICorner")
+dotCorner.CornerRadius = UDim.new(0.5, 0)
+dotCorner.Parent = dot
 
 local hitmarker = StrikeGui.newLabel("Hitmarker", root, "✕", 34, Palette.Yellow, Enum.Font.GothamBlack)
 hitmarker.Size = UDim2.new(0, 60, 0, 60)
@@ -517,32 +506,32 @@ local function buildViewmodel()
 	local weapon = StrikeConfig.Weapons[curWeapon]
 	local model = Instance.new("Model")
 	model.Name = "Viewmodel"
-	local receiver = vmPart("Receiver", Vector3.new(0.26, 0.35, 0.8), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
-	local barrel = vmPart("Barrel", Vector3.new(0.13, 0.13, weapon.Barrel * 1.6), weapon.Color, Enum.Material.Neon)
-	local grip = vmPart("Grip", Vector3.new(0.19, 0.42, 0.22), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
-	local mag = vmPart("Mag", Vector3.new(0.16, 0.48, 0.26), weapon.Color, Enum.Material.Neon)
-	local sight = vmPart("Sight", Vector3.new(0.08, 0.19, 0.08), Palette.White, Enum.Material.Neon)
-	local accent = vmPart("Accent", Vector3.new(0.27, 0.06, 0.5), Palette.Cyan, Enum.Material.Neon)
-	local flash = vmPart("Muzzle", Vector3.new(0.22, 0.22, 0.13), Palette.Yellow, Enum.Material.Neon)
+	local receiver = vmPart("Receiver", Vector3.new(0.17, 0.23, 0.52), Color3.fromRGB(60, 60, 75), Enum.Material.SmoothPlastic)
+	local barrel = vmPart("Barrel", Vector3.new(0.08, 0.08, weapon.Barrel * 1.04), weapon.Color, Enum.Material.Neon)
+	local grip = vmPart("Grip", Vector3.new(0.12, 0.27, 0.14), Color3.fromRGB(60, 60, 75), Enum.Material.SmoothPlastic)
+	local mag = vmPart("Mag", Vector3.new(0.1, 0.31, 0.17), weapon.Color, Enum.Material.Neon)
+	local sight = vmPart("Sight", Vector3.new(0.05, 0.12, 0.05), Palette.White, Enum.Material.Neon)
+	local accent = vmPart("Accent", Vector3.new(0.18, 0.04, 0.33), Palette.Cyan, Enum.Material.Neon)
+	local flash = vmPart("Muzzle", Vector3.new(0.14, 0.14, 0.08), Palette.Yellow, Enum.Material.Neon)
 	flash.Transparency = 1
 	for _, p in ipairs({ receiver, barrel, grip, mag, sight, accent, flash }) do
 		p.Parent = model
 	end
 	if weapon.Name == "RIFLE" then
-		local scopeTube = vmPart("ScopeTube", Vector3.new(0.14, 0.14, 0.42), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
-		local scopeLens = vmPart("ScopeLens", Vector3.new(0.12, 0.12, 0.04), Palette.Cyan, Enum.Material.Neon)
+		local scopeTube = vmPart("ScopeTube", Vector3.new(0.09, 0.09, 0.27), Color3.fromRGB(60, 60, 75), Enum.Material.SmoothPlastic)
+		local scopeLens = vmPart("ScopeLens", Vector3.new(0.08, 0.08, 0.03), Palette.Cyan, Enum.Material.Neon)
 		scopeTube.Parent = model
 		scopeLens.Parent = model
-		scopeTube.CFrame = receiver.CFrame * CFrame.new(0, 0.3, 0.05)
-		scopeLens.CFrame = receiver.CFrame * CFrame.new(0, 0.3, -0.18)
+		scopeTube.CFrame = receiver.CFrame * CFrame.new(0, 0.2, 0.03)
+		scopeLens.CFrame = receiver.CFrame * CFrame.new(0, 0.2, -0.12)
 	end
 	model.PrimaryPart = receiver
-	barrel.CFrame = receiver.CFrame * CFrame.new(0, 0.06, -(0.4 + weapon.Barrel * 0.8))
-	grip.CFrame = receiver.CFrame * CFrame.new(0, -0.35, 0.19)
-	mag.CFrame = receiver.CFrame * CFrame.new(0, -0.38, -0.08)
-	sight.CFrame = receiver.CFrame * CFrame.new(0, 0.26, 0)
-	accent.CFrame = receiver.CFrame * CFrame.new(0, 0.2, 0)
-	flash.CFrame = receiver.CFrame * CFrame.new(0, 0.06, -(0.4 + weapon.Barrel * 1.6 + 0.06))
+	barrel.CFrame = receiver.CFrame * CFrame.new(0, 0.04, -(0.26 + weapon.Barrel * 0.52))
+	grip.CFrame = receiver.CFrame * CFrame.new(0, -0.23, 0.12)
+	mag.CFrame = receiver.CFrame * CFrame.new(0, -0.25, -0.05)
+	sight.CFrame = receiver.CFrame * CFrame.new(0, 0.17, 0)
+	accent.CFrame = receiver.CFrame * CFrame.new(0, 0.13, 0)
+	flash.CFrame = receiver.CFrame * CFrame.new(0, 0.04, -(0.26 + weapon.Barrel * 1.04 + 0.04))
 	local camera = Workspace.CurrentCamera
 	if camera then
 		model.Parent = camera
@@ -597,7 +586,6 @@ local function shootOnce()
 	if muzzle then
 		muzzle.Transparency = 0
 	end
-	crossGap = math.min(crossGap + 7, 16)
 	local spread = Vector3.new(
 		(math.random() - 0.5) * 2 * weapon.Spread,
 		(math.random() - 0.5) * 2 * weapon.Spread,
@@ -710,6 +698,11 @@ player.CharacterAdded:Connect(function(character: Model)
 		camYaw = math.atan2(-look.X, -look.Z)
 		camPitch = 0
 	end
+	for _, part in ipairs(character:GetDescendants()) do
+		if part:IsA("BasePart") and (part.Name == "Head" or string.find(part.Name, "Arm") or part.Parent:IsA("Accessory")) then
+			part.LocalTransparencyModifier = 1
+		end
+	end
 	sprinting = false
 end)
 
@@ -787,7 +780,7 @@ RunService.RenderStepped:Connect(function(dt: number)
 		recoil = math.max(recoil - dt * 5, 0)
 		if camera then
 			viewmodel:SetPrimaryPartCFrame(camera.CFrame
-				* CFrame.new(0.58 + math.cos(bobPhase * 0.5) * 0.012, -0.45 + math.sin(bobPhase) * 0.018, -0.62 + recoil * 0.2)
+				* CFrame.new(0.55 + math.cos(bobPhase * 0.5) * 0.008, -0.55 + math.sin(bobPhase) * 0.012, -1.05 + recoil * 0.2)
 				* CFrame.Angles(recoil * 0.07, 0, 0))
 		end
 		if muzzle and now > flashUntil then
@@ -823,12 +816,6 @@ RunService.RenderStepped:Connect(function(dt: number)
 	for i, slot in ipairs(weaponSlots) do
 		slot.ammo.Text = tostring(snap.ammoList[i])
 	end
-	local targetGap = if firing and snap.phase == "playing" then 11 else 5
-	crossGap += (targetGap - crossGap) * math.min(dt * 10, 1)
-	crossLines.top.Position = UDim2.new(0, 11, 0, 4 - crossGap)
-	crossLines.bottom.Position = UDim2.new(0, 11, 0, 12 + crossGap)
-	crossLines.left.Position = UDim2.new(0, 4 - crossGap, 0, 11)
-	crossLines.right.Position = UDim2.new(0, 12 + crossGap, 0, 11)
 	if snap.score ~= lastScoreShown then
 		lastScoreShown = snap.score
 		scorePop = 1

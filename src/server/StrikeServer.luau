@@ -214,7 +214,7 @@ end
 
 local function buildHumanoid(def, id: number): (Model, { BasePart })
 	local s = def.Scale
-	local dark = Color3.new(def.Color.R * 0.55, def.Color.G * 0.55, def.Color.B * 0.55)
+	local dark = Color3.new(def.Color.R * 0.9, def.Color.G * 0.9, def.Color.B * 0.9)
 	local model = Instance.new("Model")
 	model.Name = "Enemy_" .. def.Name .. "_" .. tostring(id)
 	local torso = bodyPart("Torso", Vector3.new(2, 2, 1) * s, dark, Enum.Material.SmoothPlastic)

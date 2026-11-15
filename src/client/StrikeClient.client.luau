@@ -513,25 +513,28 @@ local function buildViewmodel()
 	local weapon = StrikeConfig.Weapons[curWeapon]
 	local model = Instance.new("Model")
 	model.Name = "Viewmodel"
-	local receiver = vmPart("Receiver", Vector3.new(0.16, 0.22, 0.5), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
-	local barrel = vmPart("Barrel", Vector3.new(0.08, 0.08, weapon.Barrel), weapon.Color, Enum.Material.Neon)
-	local grip = vmPart("Grip", Vector3.new(0.12, 0.26, 0.14), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
-	local mag = vmPart("Mag", Vector3.new(0.1, 0.3, 0.16), weapon.Color, Enum.Material.Neon)
-	local sight = vmPart("Sight", Vector3.new(0.05, 0.12, 0.05), Palette.White, Enum.Material.Neon)
-	local flash = vmPart("Muzzle", Vector3.new(0.14, 0.14, 0.08), Palette.Yellow, Enum.Material.Neon)
+	local receiver = vmPart("Receiver", Vector3.new(0.26, 0.35, 0.8), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
+	local barrel = vmPart("Barrel", Vector3.new(0.13, 0.13, weapon.Barrel * 1.6), weapon.Color, Enum.Material.Neon)
+	local grip = vmPart("Grip", Vector3.new(0.19, 0.42, 0.22), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
+	local mag = vmPart("Mag", Vector3.new(0.16, 0.48, 0.26), weapon.Color, Enum.Material.Neon)
+	local sight = vmPart("Sight", Vector3.new(0.08, 0.19, 0.08), Palette.White, Enum.Material.Neon)
+	local accent = vmPart("Accent", Vector3.new(0.27, 0.06, 0.5), Palette.Cyan, Enum.Material.Neon)
+	local flash = vmPart("Muzzle", Vector3.new(0.22, 0.22, 0.13), Palette.Yellow, Enum.Material.Neon)
 	flash.Transparency = 1
 	receiver.Parent = model
 	barrel.Parent = model
 	grip.Parent = model
 	mag.Parent = model
 	sight.Parent = model
+	accent.Parent = model
 	flash.Parent = model
 	model.PrimaryPart = receiver
-	barrel.CFrame = receiver.CFrame * CFrame.new(0, 0.04, -(0.25 + weapon.Barrel / 2))
-	grip.CFrame = receiver.CFrame * CFrame.new(0, -0.22, 0.12)
-	mag.CFrame = receiver.CFrame * CFrame.new(0, -0.24, -0.05)
-	sight.CFrame = receiver.CFrame * CFrame.new(0, 0.16, 0)
-	flash.CFrame = receiver.CFrame * CFrame.new(0, 0.04, -(0.25 + weapon.Barrel + 0.04))
+	barrel.CFrame = receiver.CFrame * CFrame.new(0, 0.06, -(0.4 + weapon.Barrel * 0.8))
+	grip.CFrame = receiver.CFrame * CFrame.new(0, -0.35, 0.19)
+	mag.CFrame = receiver.CFrame * CFrame.new(0, -0.38, -0.08)
+	sight.CFrame = receiver.CFrame * CFrame.new(0, 0.26, 0)
+	accent.CFrame = receiver.CFrame * CFrame.new(0, 0.2, 0)
+	flash.CFrame = receiver.CFrame * CFrame.new(0, 0.06, -(0.4 + weapon.Barrel * 1.6 + 0.06))
 	local camera = Workspace.CurrentCamera
 	if camera then
 		model.Parent = camera
@@ -765,7 +768,7 @@ RunService.RenderStepped:Connect(function(dt: number)
 		recoil = math.max(recoil - dt * 5, 0)
 		if camera then
 			viewmodel:SetPrimaryPartCFrame(camera.CFrame
-				* CFrame.new(0.42 + math.cos(bobPhase * 0.5) * 0.008, -0.34 + math.sin(bobPhase) * 0.012, -0.7 + recoil * 0.14)
+				* CFrame.new(0.58 + math.cos(bobPhase * 0.5) * 0.012, -0.45 + math.sin(bobPhase) * 0.018, -0.62 + recoil * 0.2)
 				* CFrame.Angles(recoil * 0.07, 0, 0))
 		end
 		if muzzle and now > flashUntil then

@@ -5,12 +5,12 @@
   "Lighting": {
    "$properties": {
     "Ambient": [
-     0.75,
-     0.75,
-     0.8
+     0.72,
+     0.68,
+     0.72
     ],
     "Brightness": 3,
-    "ClockTime": 14,
+    "ClockTime": 16.5,
     "ColorShift_Top": [
      0.1,
      0.05,
@@ -20,9 +20,9 @@
     "Outlines": false,
     "Technology": "Voxel",
     "OutdoorAmbient": [
-     0.65,
-     0.65,
-     0.75
+     0.62,
+     0.58,
+     0.66
     ]
    },
    "Sky": {
@@ -69,9 +69,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.2,
-      0.2,
-      0.42
+      0.58,
+      0.46,
+      0.32
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -85,356 +85,6 @@
       2,
       140
      ]
-    }
-   },
-   "GridX1": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      -60,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridX2": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      -40,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridX3": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      -20,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridX4": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridX5": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      20,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridX6": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      40,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridX7": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      0,
-      0.85,
-      1
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      60,
-      0.1,
-      0
-     ],
-     "Size": [
-      1.2,
-      0.3,
-      140
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ1": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      -60
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ2": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      -40
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ3": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      -20
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ4": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      0
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ5": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      20
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ6": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      40
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
-    }
-   },
-   "GridZ7": {
-    "$className": "Part",
-    "$properties": {
-     "Anchored": true,
-     "CanCollide": false,
-     "Color": [
-      1,
-      0.15,
-      0.75
-     ],
-     "Locked": true,
-     "Material": "Neon",
-     "Position": [
-      0,
-      0.1,
-      60
-     ],
-     "Size": [
-      140,
-      0.3,
-      1.2
-     ],
-     "Transparency": 0.25
     }
    },
    "TrimN": {
@@ -543,9 +193,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.62,
-      0.38,
-      0.28
+      0.6,
+      0.3,
+      0.2
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -568,9 +218,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.62,
-      0.38,
-      0.28
+      0.6,
+      0.3,
+      0.2
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -593,9 +243,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.62,
-      0.38,
-      0.28
+      0.6,
+      0.3,
+      0.2
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -618,9 +268,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.62,
-      0.38,
-      0.28
+      0.6,
+      0.3,
+      0.2
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2754,9 +2404,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.55,
-      0.38,
-      0.2
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2779,9 +2429,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.35,
-      0.22,
-      0.12
+      0.4,
+      0.26,
+      0.14
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2804,9 +2454,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.55,
-      0.38,
-      0.2
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2829,9 +2479,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.35,
-      0.22,
-      0.12
+      0.4,
+      0.26,
+      0.14
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2854,9 +2504,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.55,
-      0.38,
-      0.2
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2879,9 +2529,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.35,
-      0.22,
-      0.12
+      0.4,
+      0.26,
+      0.14
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2904,9 +2554,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.55,
-      0.38,
-      0.2
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2929,9 +2579,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.35,
-      0.22,
-      0.12
+      0.4,
+      0.26,
+      0.14
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2954,9 +2604,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.55,
-      0.38,
-      0.2
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -2979,9 +2629,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.35,
-      0.22,
-      0.12
+      0.4,
+      0.26,
+      0.14
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -3004,9 +2654,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.55,
-      0.38,
-      0.2
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -3029,9 +2679,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.35,
-      0.22,
-      0.12
+      0.4,
+      0.26,
+      0.14
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -3046,6 +2696,1161 @@
       3.1
      ],
      "Transparency": 0.0
+    }
+   },
+   "GroutX1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -60,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -50,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -40,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX4": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -30,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX5": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -20,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX6": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -10,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX7": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX8": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      10,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX9": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      20,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX10": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      30,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX11": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      40,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX12": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      50,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutX13": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      60,
+      0.08,
+      0
+     ],
+     "Size": [
+      0.4,
+      0.15,
+      140
+     ]
+    }
+   },
+   "GroutZ1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      -60
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      -50
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      -40
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ4": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      -30
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ5": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      -20
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ6": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      -10
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ7": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      0
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ8": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      10
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ9": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      20
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ10": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      30
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ11": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      40
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ12": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      50
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "GroutZ13": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.3,
+      0.22,
+      0.15
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.08,
+      60
+     ],
+     "Size": [
+      140,
+      0.15,
+      0.4
+     ]
+    }
+   },
+   "CourseN1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      2,
+      -69.5
+     ],
+     "Size": [
+      140,
+      0.3,
+      1.05
+     ]
+    }
+   },
+   "CourseN2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      4,
+      -69.5
+     ],
+     "Size": [
+      140,
+      0.3,
+      1.05
+     ]
+    }
+   },
+   "CourseN3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      6,
+      -69.5
+     ],
+     "Size": [
+      140,
+      0.3,
+      1.05
+     ]
+    }
+   },
+   "BaseN": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.2,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.5,
+      -69.5
+     ],
+     "Size": [
+      140,
+      1,
+      1.1
+     ]
+    }
+   },
+   "CourseS1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      2,
+      69.5
+     ],
+     "Size": [
+      140,
+      0.3,
+      1.05
+     ]
+    }
+   },
+   "CourseS2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      4,
+      69.5
+     ],
+     "Size": [
+      140,
+      0.3,
+      1.05
+     ]
+    }
+   },
+   "CourseS3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      6,
+      69.5
+     ],
+     "Size": [
+      140,
+      0.3,
+      1.05
+     ]
+    }
+   },
+   "BaseS": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.2,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      0,
+      0.5,
+      69.5
+     ],
+     "Size": [
+      140,
+      1,
+      1.1
+     ]
+    }
+   },
+   "CourseE1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      69.5,
+      2,
+      0
+     ],
+     "Size": [
+      1.05,
+      0.3,
+      140
+     ]
+    }
+   },
+   "CourseE2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      69.5,
+      4,
+      0
+     ],
+     "Size": [
+      1.05,
+      0.3,
+      140
+     ]
+    }
+   },
+   "CourseE3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      69.5,
+      6,
+      0
+     ],
+     "Size": [
+      1.05,
+      0.3,
+      140
+     ]
+    }
+   },
+   "BaseE": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.2,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      69.5,
+      0.5,
+      0
+     ],
+     "Size": [
+      1.1,
+      1,
+      140
+     ]
+    }
+   },
+   "CourseW1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -69.5,
+      2,
+      0
+     ],
+     "Size": [
+      1.05,
+      0.3,
+      140
+     ]
+    }
+   },
+   "CourseW2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -69.5,
+      4,
+      0
+     ],
+     "Size": [
+      1.05,
+      0.3,
+      140
+     ]
+    }
+   },
+   "CourseW3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.5,
+      0.24,
+      0.16
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -69.5,
+      6,
+      0
+     ],
+     "Size": [
+      1.05,
+      0.3,
+      140
+     ]
+    }
+   },
+   "BaseW": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.2,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -69.5,
+      0.5,
+      0
+     ],
+     "Size": [
+      1.1,
+      1,
+      140
+     ]
+    }
+   },
+   "PlantPot1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.26,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -55,
+      0.5,
+      0
+     ],
+     "Size": [
+      1.6,
+      1,
+      1.6
+     ]
+    }
+   },
+   "PlantTop1": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.15,
+      0.5,
+      0.2
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -55,
+      2.0,
+      0
+     ],
+     "Size": [
+      2.2,
+      2.2,
+      2.2
+     ],
+     "Shape": "Ball"
+    }
+   },
+   "PlantPot2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.26,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      55,
+      0.5,
+      20
+     ],
+     "Size": [
+      1.6,
+      1,
+      1.6
+     ]
+    }
+   },
+   "PlantTop2": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.15,
+      0.5,
+      0.2
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      55,
+      2.0,
+      20
+     ],
+     "Size": [
+      2.2,
+      2.2,
+      2.2
+     ],
+     "Shape": "Ball"
+    }
+   },
+   "PlantPot3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.4,
+      0.26,
+      0.14
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -20,
+      0.5,
+      60
+     ],
+     "Size": [
+      1.6,
+      1,
+      1.6
+     ]
+    }
+   },
+   "PlantTop3": {
+    "$className": "Part",
+    "$properties": {
+     "Anchored": true,
+     "CanCollide": false,
+     "Color": [
+      0.15,
+      0.5,
+      0.2
+     ],
+     "Locked": true,
+     "Material": "SmoothPlastic",
+     "Position": [
+      -20,
+      2.0,
+      60
+     ],
+     "Size": [
+      2.2,
+      2.2,
+      2.2
+     ],
+     "Shape": "Ball"
     }
    }
   }

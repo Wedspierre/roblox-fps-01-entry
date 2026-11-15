@@ -43,6 +43,8 @@ local snap = {
 	credits = StrikeConfig.StartCredits,
 	armor = 0,
 	foes = {},
+	px = 0,
+	pz = 0,
 }
 
 local firing = false
@@ -884,6 +886,7 @@ RunService.RenderStepped:Connect(function(dt: number)
 			end
 		end
 	end
+	mapArrow.Position = UDim2.new(0, ((snap.px or 0) + 68) / 136 * 180 - 9, 0, ((snap.pz or 0) + 68) / 136 * 180 - 9)
 	if camera then
 		local look = camera.CFrame.LookVector
 		mapArrow.Rotation = math.deg(math.atan2(look.X, -look.Z))

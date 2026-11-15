@@ -586,11 +586,17 @@ local function sendSnapshot()
 	local ammoList = { StrikeConfig.Weapons[1].Mag, StrikeConfig.Weapons[2].Mag, StrikeConfig.Weapons[3].Mag }
 	local reloading = false
 	local armor = 0
+	local px, pz = 0, 0
 	local first = Players:GetPlayers()[1]
 	if first then
 		local humanoid = getPlayerHumanoid(first)
 		if humanoid then
 			hp = math.max(math.floor(humanoid.Health + 0.5), 0)
+		end
+		local head = getPlayerHead(first)
+		if head then
+			px = math.floor(head.Position.X)
+			pz = math.floor(head.Position.Z)
 		end
 		local g = gun[first]
 		if g then
@@ -621,6 +627,8 @@ local function sendSnapshot()
 		credits = state.credits,
 		armor = armor,
 		foes = foes,
+		px = px,
+		pz = pz,
 	}
 	for _, player in ipairs(Players:GetPlayers()) do
 		remotes:FireClient(player, "Snapshot", snapshot)

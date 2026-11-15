@@ -24,6 +24,15 @@ local playerGui = player:WaitForChild("PlayerGui")
 -- First person: native mouse look, WASD movement, no third-person body.
 player.CameraMode = Enum.CameraMode.LockFirstPerson
 
+-- The engine does not reliably lock the mouse by itself in Studio Play:
+-- clicking the START button leaves the cursor free and the view never
+-- turns. Lock it explicitly when gameplay starts, free it for menus.
+local function setMouseLock(locked: boolean)
+	UserInputService.MouseBehavior = if locked
+		then Enum.MouseBehavior.LockCenter
+		else Enum.MouseBehavior.Default
+end
+
 local remotes = ReplicatedStorage:WaitForChild("StrikeRemotes")
 
 local Palette = StrikeConfig.Palette
@@ -50,6 +59,7 @@ local snap = {
 local firing = false
 local lastClientShot = 0
 local sprinting = false
+local lastPhase = "menu"
 
 -- ============ GUI root (fully transparent, the arena shows through) ============
 local gui = Instance.new("ScreenGui")
@@ -333,12 +343,14 @@ end)
 startButton.MouseButton1Click:Connect(function()
 	startDim.Visible = false
 	startPanel.Visible = false
+	setMouseLock(true)
 	remotes:FireServer("Start")
 end)
 
 againButton.MouseButton1Click:Connect(function()
 	endDim.Visible = false
 	endPanel.Visible = false
+	setMouseLock(true)
 	remotes:FireServer("Restart")
 end)
 
@@ -415,6 +427,13 @@ RunService.RenderStepped:Connect(function()
 		statusLabel.Text = ""
 	else
 		statusLabel.Text = ""
+	end
+	-- Mouse lock follows the phase: locked while playing so the view
+	-- turns with the mouse, free on menus so START / PLAY AGAIN
+	-- can be clicked.
+	if snap.phase ~= lastPhase then
+		lastPhase = snap.phase
+		setMouseLock(snap.phase == "playing" or snap.phase == "intermission")
 	end
 	-- Screen visibility by phase.
 	local inMenu = snap.phase == "menu"

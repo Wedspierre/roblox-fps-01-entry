@@ -1,4 +1,3 @@
-
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
@@ -6,6 +5,7 @@ local Workspace = game:GetService("Workspace")
 
 local StrikeConfig = require(ReplicatedStorage.Shared.StrikeConfig)
 local EnemyTypes = require(ReplicatedStorage.Shared.EnemyTypes)
+local StrikeGui = require(ReplicatedStorage.Shared.StrikeGui)
 
 local StrikeServer = {}
 
@@ -27,7 +27,6 @@ local state = {
 }
 
 local gun = {}
-
 local remotes: RemoteEvent
 local coverParts = {}
 
@@ -47,28 +46,28 @@ local function getGun(player: Player)
 	return g
 end
 
-local function getPlayerCharacter(player: Player): Model?
-	local character = player.Character
-	if character and character.Parent then
-		return character
+local function getCharacter(player: Player): Model?
+	local c = player.Character
+	if c and c.Parent then
+		return c
 	end
 	return nil
 end
 
-local function getPlayerHead(player: Player): BasePart?
-	local character = getPlayerCharacter(player)
-	if not character then
+local function getHead(player: Player): BasePart?
+	local c = getCharacter(player)
+	if not c then
 		return nil
 	end
-	return character:FindFirstChild("Head")
+	return c:FindFirstChild("Head")
 end
 
-local function getPlayerHumanoid(player: Player): Humanoid?
-	local character = getPlayerCharacter(player)
-	if not character then
+local function getHumanoid(player: Player): Humanoid?
+	local c = getCharacter(player)
+	if not c then
 		return nil
 	end
-	return character:FindFirstChildOfClass("Humanoid")
+	return c:FindFirstChildOfClass("Humanoid")
 end
 
 local function nearestPlayer(pos: Vector3): (Player?, Vector3?)
@@ -76,8 +75,8 @@ local function nearestPlayer(pos: Vector3): (Player?, Vector3?)
 	local bestPos: Vector3? = nil
 	local bestDist = math.huge
 	for _, player in ipairs(Players:GetPlayers()) do
-		local head = getPlayerHead(player)
-		local humanoid = getPlayerHumanoid(player)
+		local head = getHead(player)
+		local humanoid = getHumanoid(player)
 		if head and humanoid and humanoid.Health > 0 then
 			local d = (head.Position - pos).Magnitude
 			if d < bestDist then
@@ -90,7 +89,7 @@ local function nearestPlayer(pos: Vector3): (Player?, Vector3?)
 	return bestPlayer, bestPos
 end
 
-local function comboMultiplier(): number
+local function comboMult(): number
 	if state.combo <= 0 then
 		return 1
 	end
@@ -98,7 +97,7 @@ local function comboMultiplier(): number
 end
 
 local function hurtPlayer(player: Player, damage: number)
-	local humanoid = getPlayerHumanoid(player)
+	local humanoid = getHumanoid(player)
 	if not humanoid or humanoid.Health <= 0 then
 		return
 	end
@@ -122,14 +121,7 @@ function gameOver()
 	if state.score > state.best then
 		state.best = state.score
 	end
-	for _, enemy in ipairs(state.enemies) do
-		enemy.model:Destroy()
-	end
-	state.enemies = {}
-	for _, proj in ipairs(state.projectiles) do
-		proj.part:Destroy()
-	end
-	state.projectiles = {}
+	clearField()
 end
 
 local function clearField()
@@ -169,7 +161,7 @@ local function resetRun(player: Player)
 	pcall(function()
 		player:LoadCharacter()
 	end)
-	local humanoid = getPlayerHumanoid(player)
+	local humanoid = getHumanoid(player)
 	if humanoid then
 		humanoid.WalkSpeed = StrikeConfig.PlayerWalkSpeed
 	end
@@ -183,19 +175,8 @@ local function makeHealthBar(part: BasePart, sizeY: number): Frame
 	billboard.StudsOffset = Vector3.new(0, sizeY / 2 + 2.5, 0)
 	billboard.AlwaysOnTop = true
 	billboard.Parent = part
-	local back = Instance.new("Frame")
-	back.Name = "Back"
+	local back, fill = StrikeGui.newBar("Health", billboard, StrikeConfig.Palette.Green)
 	back.Size = UDim2.fromScale(1, 1)
-	back.BackgroundColor3 = StrikeConfig.Palette.Background
-	back.BackgroundTransparency = 0.2
-	back.BorderSizePixel = 0
-	back.Parent = billboard
-	local fill = Instance.new("Frame")
-	fill.Name = "Fill"
-	fill.Size = UDim2.fromScale(1, 1)
-	fill.BackgroundColor3 = StrikeConfig.Palette.Green
-	fill.BorderSizePixel = 0
-	fill.Parent = back
 	return fill
 end
 
@@ -224,13 +205,9 @@ local function buildHumanoid(def, id: number): (Model, { BasePart })
 	local armR = bodyPart("ArmR", Vector3.new(1, 2, 1) * s, def.Color, Enum.Material.Neon)
 	local legL = bodyPart("LegL", Vector3.new(1, 1, 1) * s, def.Color, Enum.Material.Neon)
 	local legR = bodyPart("LegR", Vector3.new(1, 1, 1) * s, def.Color, Enum.Material.Neon)
-	torso.Parent = model
-	head.Parent = model
-	visor.Parent = model
-	armL.Parent = model
-	armR.Parent = model
-	legL.Parent = model
-	legR.Parent = model
+	for _, p in ipairs({ torso, head, visor, armL, armR, legL, legR }) do
+		p.Parent = model
+	end
 	local parts: { BasePart } = { torso = torso, head = head, visor = visor, armL = armL, armR = armR, legL = legL, legR = legR }
 	if def.Name == "Shooter" then
 		local gunPart = bodyPart("Gun", Vector3.new(0.25, 0.25, 1.4) * s, Color3.fromRGB(30, 30, 40), Enum.Material.SmoothPlastic)
@@ -251,14 +228,13 @@ local function spawnEnemy(kind: string)
 	local model, parts = buildHumanoid(def, id)
 	model.Parent = Workspace
 	local barFill = makeHealthBar(parts.torso, def.Height)
-	local pos = Vector3.new(point.X, 0, point.Z)
 	table.insert(state.enemies, {
 		id = id,
 		kind = kind,
 		def = def,
 		model = model,
 		parts = parts,
-		pos = pos,
+		pos = Vector3.new(point.X, 0, point.Z),
 		yaw = 0,
 		walkPhase = 0,
 		barFill = barFill,
@@ -280,7 +256,7 @@ local function killEnemy(index: number, shooter: Player?, headshot: boolean?)
 	state.kills += 1
 	state.combo += 1
 	state.comboTimer = StrikeConfig.ComboWindowSeconds
-	local gain = math.floor(StrikeConfig.KillScore * comboMultiplier() + 0.5)
+	local gain = math.floor(StrikeConfig.KillScore * comboMult() + 0.5)
 	state.score += gain
 	state.credits = math.min(state.credits + StrikeConfig.KillCredits, StrikeConfig.CreditCap)
 	if shooter then
@@ -309,35 +285,24 @@ local function findEnemyByPart(part: BasePart): (any, number?)
 end
 
 local function fireProjectile(from: Vector3, target: Vector3, damage: number, speed: number)
-	local dir = (target - from)
+	local dir = target - from
 	if dir.Magnitude < 0.01 then
 		return
 	end
 	dir = dir.Unit
-	local part = Instance.new("Part")
-	part.Name = "Projectile"
-	part.Anchored = true
-	part.CanCollide = false
-	part.Material = Enum.Material.Neon
-	part.Color = StrikeConfig.Palette.Red
+	local part = bodyPart("Projectile", Vector3.new(1.4, 1.4, 1.4), StrikeConfig.Palette.Red, Enum.Material.Neon)
 	part.Shape = Enum.PartType.Ball
-	part.Size = Vector3.new(1.4, 1.4, 1.4)
 	part.Position = from
 	part.Parent = Workspace
-	table.insert(state.projectiles, {
-		part = part,
-		vel = dir * speed,
-		life = 5,
-		damage = damage,
-	})
+	table.insert(state.projectiles, { part = part, vel = dir * speed, life = 5, damage = damage })
 end
 
 local function onShoot(player: Player, origin: Vector3, direction: Vector3, weaponIndex: any)
 	if state.phase ~= "playing" then
 		return
 	end
-	local head = getPlayerHead(player)
-	local humanoid = getPlayerHumanoid(player)
+	local head = getHead(player)
+	local humanoid = getHumanoid(player)
 	if not head or not humanoid or humanoid.Health <= 0 then
 		return
 	end
@@ -368,7 +333,6 @@ local function onShoot(player: Player, origin: Vector3, direction: Vector3, weap
 		return
 	end
 	g.ammo[wi] -= 1
-
 	local params = RaycastParams.new()
 	params.FilterType = Enum.RaycastFilterType.Exclude
 	local exclude = {}
@@ -426,7 +390,7 @@ local function onBuy(player: Player, itemId: any)
 		end
 		g.armor = item.Armor
 	elseif itemId == "Medkit" then
-		local h = getPlayerHumanoid(player)
+		local h = getHumanoid(player)
 		if not h or h.Health >= StrikeConfig.PlayerMaxHealth then
 			return
 		end
@@ -508,10 +472,8 @@ local function updateEnemies(dt: number)
 							fireProjectile(chest, targetPos, def.ProjectileDamage, def.ProjectileSpeed)
 						end
 					end
-				else
-					if dist > 0.01 then
-						move = flat.Unit * speed * dt
-					end
+				elseif dist > 0.01 then
+					move = flat.Unit * speed * dt
 				end
 				enemy.pos += move
 				for _, cover in ipairs(coverParts) do
@@ -589,11 +551,11 @@ local function sendSnapshot()
 	local px, pz = 0, 0
 	local first = Players:GetPlayers()[1]
 	if first then
-		local humanoid = getPlayerHumanoid(first)
+		local humanoid = getHumanoid(first)
 		if humanoid then
 			hp = math.max(math.floor(humanoid.Health + 0.5), 0)
 		end
-		local head = getPlayerHead(first)
+		local head = getHead(first)
 		if head then
 			px = math.floor(head.Position.X)
 			pz = math.floor(head.Position.Z)
@@ -615,7 +577,6 @@ local function sendSnapshot()
 		score = state.score,
 		best = state.best,
 		combo = state.combo,
-		comboFrac = if state.combo > 0 then state.comboTimer / StrikeConfig.ComboWindowSeconds else 0,
 		hp = hp,
 		maxHp = maxHp,
 		ammoList = ammoList,
@@ -645,9 +606,8 @@ local function onHeartbeat(dt: number)
 				state.comboTimer = 0
 			end
 		end
-		local now = os.clock()
 		for _, g in pairs(gun) do
-			if g.reloading and now >= g.reloadEnd then
+			if g.reloading and os.clock() >= g.reloadEnd then
 				g.reloading = false
 				g.ammo[g.reloadWeapon] = StrikeConfig.Weapons[g.reloadWeapon].Mag
 			end
@@ -671,7 +631,7 @@ local function onHeartbeat(dt: number)
 			end
 			state.projectiles = {}
 			for _, player in ipairs(Players:GetPlayers()) do
-				local humanoid = getPlayerHumanoid(player)
+				local humanoid = getHumanoid(player)
 				if humanoid and humanoid.Health > 0 then
 					humanoid.Health = math.min(humanoid.Health + StrikeConfig.WaveClearHeal, StrikeConfig.PlayerMaxHealth)
 				end

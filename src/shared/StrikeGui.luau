@@ -1,10 +1,19 @@
-
 local StrikeConfig = require(script.Parent.StrikeConfig)
 
 local StrikeGui = {}
 
 local FONT_TITLE = Enum.Font.Arcade
 local FONT_BODY = Enum.Font.GothamBold
+
+function StrikeGui.place(inst: GuiObject, x: number, y: number, w: number, h: number)
+	inst.Position = UDim2.new(0, x, 0, y)
+	inst.Size = UDim2.new(0, w, 0, h)
+end
+
+function StrikeGui.placeF(inst: GuiObject, x: number, y: number, wOff: number, h: number)
+	inst.Position = UDim2.new(0, x, 0, y)
+	inst.Size = UDim2.new(1, wOff, 0, h)
+end
 
 function StrikeGui.newPlainFrame(name: string, parent: Instance): Frame
 	local frame = Instance.new("Frame")
@@ -33,14 +42,7 @@ function StrikeGui.newFrame(name: string, parent: Instance): Frame
 	return frame
 end
 
-function StrikeGui.newLabel(
-	name: string,
-	parent: Instance,
-	text: string,
-	textSize: number,
-	color: Color3,
-	font: Enum.Font?
-): TextLabel
+function StrikeGui.newLabel(name: string, parent: Instance, text: string, textSize: number, color: Color3, font: Enum.Font?): TextLabel
 	local label = Instance.new("TextLabel")
 	label.Name = name
 	label.BackgroundTransparency = 1
@@ -63,13 +65,7 @@ function StrikeGui.newTitleLabel(name: string, parent: Instance, text: string, t
 	return label
 end
 
-function StrikeGui.newButton(
-	name: string,
-	parent: Instance,
-	text: string,
-	fillColor: Color3,
-	textSize: number?
-): TextButton
+function StrikeGui.newButton(name: string, parent: Instance, text: string, fillColor: Color3, textSize: number?): TextButton
 	local button = Instance.new("TextButton")
 	button.Name = name
 	button.BackgroundColor3 = fillColor
@@ -122,6 +118,20 @@ function StrikeGui.newBar(name: string, parent: Instance, fillColor: Color3): (F
 	fillCorner.CornerRadius = UDim.new(0, 6)
 	fillCorner.Parent = fill
 	return back, fill
+end
+
+function StrikeGui.newStatBar(name: string, parent: Instance, label: string, frac: number, color: Color3): Frame
+	local row = Instance.new("Frame")
+	row.Name = name
+	row.BackgroundTransparency = 1
+	row.Parent = parent
+	local tag = StrikeGui.newLabel(name .. "Tag", row, label, 11, StrikeConfig.Palette.DimText)
+	StrikeGui.place(tag, 0, 0, 34, 12)
+	tag.TextXAlignment = Enum.TextXAlignment.Left
+	local back, fill = StrikeGui.newBar(name .. "Bar", row, color)
+	StrikeGui.placeF(back, 38, 1, -38, 10)
+	fill.Size = UDim2.fromScale(math.clamp(frac, 0, 1), 1)
+	return row
 end
 
 return StrikeGui

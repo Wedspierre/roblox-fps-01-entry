@@ -1,4 +1,1 @@
-
-local StrikeServer = require(script.StrikeServer)
-
-StrikeServer.start()
+require(script.StrikeServer).start()

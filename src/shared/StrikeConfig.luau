@@ -1,4 +1,3 @@
-
 local StrikeConfig = {}
 
 StrikeConfig.Palette = {
@@ -22,6 +21,7 @@ StrikeConfig.PlayerMaxHealth = 100
 StrikeConfig.PlayerWalkSpeed = 16
 StrikeConfig.PlayerSprintSpeed = 26
 StrikeConfig.WaveClearHeal = 25
+StrikeConfig.ScopeRange = 300
 
 StrikeConfig.Weapons = {
 	{ Name = "RIFLE", Damage = 12, Cooldown = 0.16, Mag = 30, Reload = 1.4, Pellets = 1, Spread = 0.012, Range = 300, Color = Color3.fromRGB(0, 240, 255), Barrel = 0.55 },

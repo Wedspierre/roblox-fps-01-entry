@@ -1,4 +1,3 @@
-
 local StrikeConfig = require(script.Parent.StrikeConfig)
 
 local EnemyTypes = {}
@@ -47,25 +46,26 @@ EnemyTypes.Tank = {
 	Score = 1,
 }
 
+local MIX = {
+	{ "Chaser", 0.5 },
+	{ "Shooter", 0.8 },
+	{ "Tank", 1.0 },
+}
+
 function EnemyTypes.pickForWave(wave: number): string
 	if wave <= 1 then
 		return "Chaser"
 	end
 	local roll = math.random()
 	if wave == 2 then
-		if roll < 0.6 then
-			return "Chaser"
-		else
-			return "Shooter"
+		return if roll < 0.6 then "Chaser" else "Shooter"
+	end
+	for _, entry in ipairs(MIX) do
+		if roll < entry[2] then
+			return entry[1]
 		end
 	end
-	if roll < 0.5 then
-		return "Chaser"
-	elseif roll < 0.8 then
-		return "Shooter"
-	else
-		return "Tank"
-	end
+	return "Tank"
 end
 
 return EnemyTypes

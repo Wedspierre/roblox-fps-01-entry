@@ -1,4 +1,3 @@
-
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
@@ -15,15 +14,10 @@ local playerGui = player:WaitForChild("PlayerGui")
 
 player.CameraMode = Enum.CameraMode.Classic
 
-local function setMouseLock(locked: boolean)
-	UserInputService.MouseBehavior = if locked
-		then Enum.MouseBehavior.LockCenter
-		else Enum.MouseBehavior.Default
-end
-
 local remotes = ReplicatedStorage:WaitForChild("StrikeRemotes")
-
 local Palette = StrikeConfig.Palette
+local place = StrikeGui.place
+local placeF = StrikeGui.placeF
 
 local snap = {
 	phase = "menu",
@@ -31,7 +25,6 @@ local snap = {
 	score = 0,
 	best = 0,
 	combo = 0,
-	comboFrac = 0,
 	hp = StrikeConfig.PlayerMaxHealth,
 	maxHp = StrikeConfig.PlayerMaxHealth,
 	ammoList = { StrikeConfig.Weapons[1].Mag, StrikeConfig.Weapons[2].Mag, StrikeConfig.Weapons[3].Mag },
@@ -51,7 +44,6 @@ local firing = false
 local lastClientShot = 0
 local sprinting = false
 local lastPhase = "menu"
-
 local curWeapon = 1
 local recoil = 0
 local bobPhase = 0
@@ -65,10 +57,9 @@ local scoping = false
 local lowHpCalled = false
 local comboCalled = 0
 local lastCallout = 0
-
 local camYaw = 0
 local camPitch = 0
-local CAM_SENSITIVITY = 0.0035
+local CAM_SENS = 0.0035
 
 local gui = Instance.new("ScreenGui")
 gui.Name = "StrikeGui"
@@ -91,9 +82,8 @@ local function crossLine(x, y, w, h)
 	local line = Instance.new("Frame")
 	line.BackgroundColor3 = Palette.White
 	line.BorderSizePixel = 0
-	line.Position = UDim2.new(0, x, 0, y)
-	line.Size = UDim2.new(0, w, 0, h)
 	line.Parent = crosshair
+	place(line, x, y, w, h)
 	return line
 end
 crossLines.top = crossLine(11, 0, 2, 8)
@@ -103,9 +93,8 @@ crossLines.right = crossLine(16, 11, 8, 2)
 local dot = Instance.new("Frame")
 dot.BackgroundColor3 = Palette.Cyan
 dot.BorderSizePixel = 0
-dot.Position = UDim2.new(0, 11, 0, 11)
-dot.Size = UDim2.new(0, 2, 0, 2)
 dot.Parent = crosshair
+place(dot, 11, 11, 2, 2)
 
 local hitmarker = StrikeGui.newLabel("Hitmarker", root, "✕", 34, Palette.Yellow, Enum.Font.GothamBlack)
 hitmarker.Size = UDim2.new(0, 60, 0, 60)
@@ -118,23 +107,18 @@ local healthPanel = StrikeGui.newFrame("HealthPanel", root)
 healthPanel.Size = UDim2.new(0, 260, 0, 96)
 healthPanel.Position = UDim2.new(0, 20, 1, -116)
 local healthLabel = StrikeGui.newLabel("HealthLabel", healthPanel, "HEALTH", 16, Palette.DimText)
-healthLabel.Position = UDim2.new(0, 14, 0, 8)
-healthLabel.Size = UDim2.new(0, 120, 0, 20)
+place(healthLabel, 14, 8, 120, 20)
 healthLabel.TextXAlignment = Enum.TextXAlignment.Left
 local healthBack, healthFill = StrikeGui.newBar("Health", healthPanel, Palette.Green)
-healthBack.Position = UDim2.new(0, 14, 0, 32)
-healthBack.Size = UDim2.new(0, 232, 0, 16)
+place(healthBack, 14, 32, 232, 16)
 local healthNumber = StrikeGui.newLabel("HealthNumber", healthPanel, "100", 20, Palette.White)
-healthNumber.Position = UDim2.new(0, 150, 0, 6)
-healthNumber.Size = UDim2.new(0, 96, 0, 22)
+place(healthNumber, 150, 6, 96, 22)
 healthNumber.TextXAlignment = Enum.TextXAlignment.Right
 local armorLabel = StrikeGui.newLabel("ArmorLabel", healthPanel, "ARMOR 0", 13, Palette.Cyan)
-armorLabel.Position = UDim2.new(0, 14, 0, 56)
-armorLabel.Size = UDim2.new(0, 76, 0, 16)
+place(armorLabel, 14, 56, 76, 16)
 armorLabel.TextXAlignment = Enum.TextXAlignment.Left
 local armorBack, armorFill = StrikeGui.newBar("Armor", healthPanel, Palette.Cyan)
-armorBack.Position = UDim2.new(0, 94, 0, 58)
-armorBack.Size = UDim2.new(0, 152, 0, 12)
+place(armorBack, 94, 58, 152, 12)
 
 local ammoLabel = StrikeGui.newTitleLabel("Ammo", root, "30 / 30", 44)
 ammoLabel.Position = UDim2.new(1, -220, 1, -96)
@@ -150,16 +134,13 @@ local scorePanel = StrikeGui.newFrame("ScorePanel", root)
 scorePanel.Size = UDim2.new(0, 300, 0, 124)
 scorePanel.Position = UDim2.new(1, -320, 0, 20)
 local scoreLabel = StrikeGui.newLabel("Score", scorePanel, "SCORE 0", 28, Palette.White)
-scoreLabel.Position = UDim2.new(0, 0, 0, 10)
-scoreLabel.Size = UDim2.new(1, -16, 0, 36)
+place(scoreLabel, 0, 10, 284, 36)
 scoreLabel.TextXAlignment = Enum.TextXAlignment.Right
 local waveLabel = StrikeGui.newTitleLabel("Wave", scorePanel, "WAVE 1", 24)
-waveLabel.Position = UDim2.new(0, 0, 0, 48)
-waveLabel.Size = UDim2.new(1, -16, 0, 32)
+place(waveLabel, 0, 48, 284, 32)
 waveLabel.TextXAlignment = Enum.TextXAlignment.Right
 local creditsLabel = StrikeGui.newLabel("Credits", scorePanel, "CREDITS 800", 22, Palette.Yellow)
-creditsLabel.Position = UDim2.new(0, 0, 0, 86)
-creditsLabel.Size = UDim2.new(1, -16, 0, 28)
+place(creditsLabel, 0, 86, 284, 28)
 creditsLabel.TextXAlignment = Enum.TextXAlignment.Right
 local comboLabel = StrikeGui.newLabel("Combo", root, "", 24, Palette.Yellow)
 comboLabel.Position = UDim2.new(1, -320, 0, 156)
@@ -182,21 +163,20 @@ popup.Position = UDim2.new(0.5, 30, 0.5, -40)
 popup.TextTransparency = 1
 local popupUntil = 0
 
-local hurtFlash = Instance.new("Frame")
-hurtFlash.Name = "HurtFlash"
-hurtFlash.Size = UDim2.fromScale(1, 1)
-hurtFlash.BackgroundColor3 = Palette.Red
-hurtFlash.BackgroundTransparency = 1
-hurtFlash.BorderSizePixel = 0
-hurtFlash.Parent = root
+local function fullFrame(name: string, color: Color3): Frame
+	local f = Instance.new("Frame")
+	f.Name = name
+	f.Size = UDim2.fromScale(1, 1)
+	f.BackgroundColor3 = color
+	f.BackgroundTransparency = 1
+	f.BorderSizePixel = 0
+	f.Parent = root
+	return f
+end
 
-local lowHp = Instance.new("Frame")
-lowHp.Name = "LowHp"
-lowHp.Size = UDim2.fromScale(1, 1)
-lowHp.BackgroundColor3 = Palette.Red
-lowHp.BackgroundTransparency = 1
-lowHp.BorderSizePixel = 0
-lowHp.Parent = root
+local hurtFlash = fullFrame("HurtFlash", Palette.Red)
+
+local lowHp = fullFrame("LowHp", Palette.Red)
 local lowHpStroke = Instance.new("UIStroke")
 lowHpStroke.Color = Palette.Red
 lowHpStroke.Thickness = 18
@@ -205,41 +185,48 @@ lowHpStroke.Parent = lowHp
 
 local feedFrame = Instance.new("Frame")
 feedFrame.Name = "KillFeed"
-feedFrame.Size = UDim2.new(0, 300, 0, 120)
-feedFrame.Position = UDim2.new(1, -320, 0, 168)
 feedFrame.BackgroundTransparency = 1
 feedFrame.Parent = root
+feedFrame.Size = UDim2.new(0, 300, 0, 120)
+feedFrame.Position = UDim2.new(1, -320, 0, 168)
 local feedEntries = {}
 
 local weaponBar = Instance.new("Frame")
 weaponBar.Name = "WeaponBar"
-weaponBar.Size = UDim2.new(0, 354, 0, 54)
-weaponBar.Position = UDim2.new(0.5, -177, 1, -70)
 weaponBar.BackgroundTransparency = 1
 weaponBar.Parent = root
+weaponBar.Size = UDim2.new(0, 354, 0, 54)
+weaponBar.Position = UDim2.new(0.5, -177, 1, -70)
 local weaponSlots = {}
 for i, weapon in ipairs(StrikeConfig.Weapons) do
 	local slot = StrikeGui.newFrame("Weapon" .. tostring(i), weaponBar)
-	slot.Size = UDim2.new(0, 110, 0, 54)
-	slot.Position = UDim2.new(0, (i - 1) * 122, 0, 0)
+	place(slot, (i - 1) * 122, 0, 110, 54)
 	local key = StrikeGui.newLabel("Key", slot, tostring(i), 14, Palette.DimText)
-	key.Position = UDim2.new(0, 8, 0, 4)
-	key.Size = UDim2.new(0, 20, 0, 18)
+	place(key, 8, 4, 20, 18)
 	key.TextXAlignment = Enum.TextXAlignment.Left
 	local name = StrikeGui.newLabel("Name", slot, weapon.Name, 16, Palette.White)
-	name.Position = UDim2.new(0, 28, 0, 4)
-	name.Size = UDim2.new(0, 78, 0, 20)
+	place(name, 28, 4, 78, 20)
 	name.TextXAlignment = Enum.TextXAlignment.Left
 	local ammo = StrikeGui.newLabel("Ammo", slot, tostring(weapon.Mag), 14, weapon.Color)
-	ammo.Position = UDim2.new(0, 8, 0, 26)
-	ammo.Size = UDim2.new(0, 94, 0, 20)
+	place(ammo, 8, 26, 94, 20)
 	ammo.TextXAlignment = Enum.TextXAlignment.Left
 	weaponSlots[i] = { slot = slot, ammo = ammo }
 end
 
 local mapFrame = StrikeGui.newFrame("Minimap", root)
-mapFrame.Size = UDim2.new(0, 180, 0, 180)
-mapFrame.Position = UDim2.new(0, 20, 0, 56)
+place(mapFrame, 20, 56, 180, 180)
+local function mapWall(x, y, w, h)
+	local wall = Instance.new("Frame")
+	wall.BackgroundColor3 = Palette.White
+	wall.BackgroundTransparency = 0.4
+	wall.BorderSizePixel = 0
+	wall.Parent = mapFrame
+	place(wall, x, y, w, h)
+end
+mapWall(6, 6, 168, 3)
+mapWall(6, 171, 168, 3)
+mapWall(6, 6, 3, 168)
+mapWall(171, 6, 3, 168)
 local mapDots = {}
 for i = 1, 12 do
 	local d = Instance.new("Frame")
@@ -251,77 +238,125 @@ for i = 1, 12 do
 	mapDots[i] = d
 end
 local mapArrow = StrikeGui.newLabel("MapArrow", mapFrame, "▲", 16, Palette.White, Enum.Font.GothamBlack)
-mapArrow.Size = UDim2.new(0, 18, 0, 18)
-mapArrow.Position = UDim2.new(0, 81, 0, 81)
+place(mapArrow, 81, 81, 18, 18)
 mapArrow.BackgroundTransparency = 1
 local mapA = StrikeGui.newLabel("MapA", mapFrame, "A", 14, Palette.Cyan, Enum.Font.GothamBlack)
-mapA.Size = UDim2.new(0, 16, 0, 16)
-mapA.Position = UDim2.new(0, 82, 0, 9)
+place(mapA, 82, 12, 16, 16)
 mapA.BackgroundTransparency = 1
 local mapB = StrikeGui.newLabel("MapB", mapFrame, "B", 14, Palette.Magenta, Enum.Font.GothamBlack)
-mapB.Size = UDim2.new(0, 16, 0, 16)
-mapB.Position = UDim2.new(0, 82, 0, 155)
+place(mapB, 82, 152, 16, 16)
 mapB.BackgroundTransparency = 1
+
 local calloutFrame = Instance.new("Frame")
 calloutFrame.Name = "Callouts"
-calloutFrame.Size = UDim2.new(0, 320, 0, 72)
-calloutFrame.Position = UDim2.new(0, 20, 0, 244)
 calloutFrame.BackgroundTransparency = 1
 calloutFrame.Parent = root
+place(calloutFrame, 20, 244, 320, 72)
 local calloutEntries = {}
-local function addCallout(text: string)
-	local e = StrikeGui.newLabel("Call", calloutFrame, text, 15, Palette.Cyan)
-	e.Size = UDim2.new(1, 0, 0, 20)
-	e.TextXAlignment = Enum.TextXAlignment.Left
+
+local function feedPush(list, parent, text, size, color, align, maxN, step)
+	local e = StrikeGui.newLabel("Feed", parent, text, size, color)
+	e.Size = UDim2.new(1, 0, 0, 22)
+	e.TextXAlignment = align
 	e.BackgroundTransparency = 1
-	table.insert(calloutEntries, 1, e)
-	for i, x in ipairs(calloutEntries) do
-		x.Position = UDim2.new(0, 0, 0, (i - 1) * 22)
-		x.Visible = i <= 3
+	table.insert(list, 1, e)
+	for i, x in ipairs(list) do
+		x.Position = UDim2.new(0, 0, 0, (i - 1) * step)
+		x.Visible = i <= maxN
 	end
 	task.delay(4, function()
 		e:Destroy()
-		for i, x in ipairs(calloutEntries) do
+		for i, x in ipairs(list) do
 			if x == e then
-				table.remove(calloutEntries, i)
+				table.remove(list, i)
 				break
 			end
 		end
-		for i, x in ipairs(calloutEntries) do
-			x.Position = UDim2.new(0, 0, 0, (i - 1) * 22)
+		for i, x in ipairs(list) do
+			x.Position = UDim2.new(0, 0, 0, (i - 1) * step)
 		end
 	end)
 end
+
+local function addCallout(text: string)
+	feedPush(calloutEntries, calloutFrame, text, 15, Palette.Cyan, Enum.TextXAlignment.Left, 3, 22)
+end
+
+local function addKillFeed(text: string)
+	feedPush(feedEntries, feedFrame, text, 16, Palette.Yellow, Enum.TextXAlignment.Right, 4, 24)
+end
+
 local buyPanel = StrikeGui.newFrame("BuyPanel", root)
-buyPanel.Size = UDim2.new(0, 420, 0, 320)
-buyPanel.Position = UDim2.new(0.5, -210, 0.5, -160)
+buyPanel.Size = UDim2.new(0, 580, 0, 340)
+buyPanel.Position = UDim2.new(0.5, -290, 0.5, -170)
 buyPanel.Visible = false
 local buyTitle = StrikeGui.newTitleLabel("BuyTitle", buyPanel, "BUY MENU  [B]", 28)
-buyTitle.Position = UDim2.new(0, 0, 0, 14)
-buyTitle.Size = UDim2.new(1, 0, 0, 36)
+placeF(buyTitle, 0, 14, 0, 36)
 local buyRows = {}
-for i, id in ipairs({ "Light", "Heavy", "Medkit", "Ammo" }) do
-	local item = StrikeConfig.Shop[id]
-	local y = 60 + (i - 1) * 56
-	local name = StrikeGui.newLabel("BuyName", buyPanel, item.Name, 18, Palette.White)
-	name.Position = UDim2.new(0, 20, 0, y + 6)
-	name.Size = UDim2.new(0, 190, 0, 26)
+local function colHead(text: string, x: number)
+	local h = StrikeGui.newLabel("ColHead", buyPanel, text, 15, Palette.DimText)
+	place(h, x, 56, 170, 20)
+	h.TextXAlignment = Enum.TextXAlignment.Left
+end
+colHead("WEAPONS", 20)
+colHead("ARMOR", 230)
+colHead("SUPPLIES", 400)
+local function gunIcon(parent: Instance, x: number, y: number, color: Color3)
+	local body = Instance.new("Frame")
+	body.BackgroundColor3 = color
+	body.BorderSizePixel = 0
+	body.Parent = parent
+	place(body, x, y + 4, 30, 6)
+	local grip = Instance.new("Frame")
+	grip.BackgroundColor3 = Palette.White
+	grip.BorderSizePixel = 0
+	grip.Parent = parent
+	place(grip, x + 6, y + 10, 5, 8)
+end
+for i, weapon in ipairs(StrikeConfig.Weapons) do
+	local y = 82 + (i - 1) * 66
+	gunIcon(buyPanel, 22, y + 2, weapon.Color)
+	local name = StrikeGui.newLabel("WName", buyPanel, weapon.Name, 17, Palette.White)
+	place(name, 58, y, 130, 22)
 	name.TextXAlignment = Enum.TextXAlignment.Left
+	local owned = StrikeGui.newLabel("WOwned", buyPanel, "OWNED", 12, Palette.Green)
+	place(owned, 58, y + 22, 60, 16)
+	owned.TextXAlignment = Enum.TextXAlignment.Left
+	local stats = {
+		{ "DMG", weapon.Damage / 12 },
+		{ "RATE", (1 / weapon.Cooldown) / 12.5 },
+		{ "PEN", weapon.Range / 300 },
+	}
+	for j, s in ipairs(stats) do
+		place(StrikeGui.newStatBar(s[1] .. tostring(i), buyPanel, s[1], s[2], weapon.Color), 120, y + 2 + (j - 1) * 16, 76, 14)
+	end
+end
+local function buyCard(id: string, title: string, desc: string, x: number, y: number)
+	local item = StrikeConfig.Shop[id]
+	local name = StrikeGui.newLabel("BuyName", buyPanel, title, 17, Palette.White)
+	place(name, x, y, 150, 22)
+	name.TextXAlignment = Enum.TextXAlignment.Left
+	local sub = StrikeGui.newLabel("BuySub", buyPanel, desc, 13, Palette.DimText)
+	place(sub, x, y + 22, 150, 18)
+	sub.TextXAlignment = Enum.TextXAlignment.Left
 	local price = StrikeGui.newLabel("BuyPrice", buyPanel, "$" .. tostring(item.Price), 18, Palette.Yellow)
-	price.Position = UDim2.new(0, 210, 0, y + 6)
-	price.Size = UDim2.new(0, 80, 0, 26)
-	price.TextXAlignment = Enum.TextXAlignment.Right
-	local btn = StrikeGui.newButton("BuyBtn", buyPanel, "BUY", Palette.Cyan, 18)
-	btn.Position = UDim2.new(0, 300, 0, y)
-	btn.Size = UDim2.new(0, 96, 0, 38)
+	place(price, x, y + 40, 80, 24)
+	price.TextXAlignment = Enum.TextXAlignment.Left
+	local btn = StrikeGui.newButton("BuyBtn", buyPanel, "BUY", Palette.Cyan, 16)
+	place(btn, x + 82, y + 34, 76, 34)
 	buyRows[id] = btn
 	btn.MouseButton1Click:Connect(function()
 		remotes:FireServer("Buy", id)
 	end)
 end
+buyCard("Light", "LIGHT KEVLAR", "+50 ARMOR", 230, 82)
+buyCard("Heavy", "HEAVY KEVLAR", "+100 ARMOR", 230, 168)
+buyCard("Medkit", "MEDKIT", "+50 HEALTH", 400, 82)
+buyCard("Ammo", "AMMO", "REFILL ALL GUNS", 400, 168)
 local buyHint = StrikeGui.newLabel("BuyHint", buyPanel, "Beli hanya saat jeda antar wave. Armor menahan 50% damage.", 14, Palette.DimText)
 buyHint.Position = UDim2.new(0, 0, 1, -28)
 buyHint.Size = UDim2.new(1, 0, 0, 20)
+
 local scopeFrame = Instance.new("Frame")
 scopeFrame.Name = "Scope"
 scopeFrame.Size = UDim2.fromScale(1, 1)
@@ -352,6 +387,10 @@ scopeV.Position = UDim2.new(0.5, -1, 0.5, -210)
 scopeV.BackgroundColor3 = Palette.White
 scopeV.BorderSizePixel = 0
 scopeV.Parent = scopeFrame
+local scopeRange = StrikeGui.newLabel("ScopeRange", scopeFrame, "", 20, Palette.White, Enum.Font.GothamBlack)
+scopeRange.Size = UDim2.new(0, 200, 0, 28)
+scopeRange.Position = UDim2.new(0.5, -100, 0.5, 150)
+scopeRange.BackgroundTransparency = 1
 
 local function showBanner(text: string)
 	banner.Text = text
@@ -389,30 +428,6 @@ local function showDamageNumber(text: string, color: Color3)
 	end)
 end
 
-local function addKillFeed(text: string)
-	local entry = StrikeGui.newLabel("Feed", feedFrame, text, 16, Palette.Yellow)
-	entry.Size = UDim2.new(1, 0, 0, 22)
-	entry.TextXAlignment = Enum.TextXAlignment.Right
-	entry.BackgroundTransparency = 1
-	table.insert(feedEntries, 1, entry)
-	for i, e in ipairs(feedEntries) do
-		e.Position = UDim2.new(0, 0, 0, (i - 1) * 24)
-		e.Visible = i <= 4
-	end
-	task.delay(4, function()
-		entry:Destroy()
-		for i, e in ipairs(feedEntries) do
-			if e == entry then
-				table.remove(feedEntries, i)
-				break
-			end
-		end
-		for i, e in ipairs(feedEntries) do
-			e.Position = UDim2.new(0, 0, 0, (i - 1) * 24)
-		end
-	end)
-end
-
 local function showPopup(text: string)
 	popup.Text = text
 	popup.TextTransparency = 0
@@ -431,17 +446,15 @@ local startPanel = StrikeGui.newFrame("StartPanel", root)
 startPanel.Size = UDim2.new(0, 620, 0, 440)
 startPanel.Position = UDim2.new(0.5, -310, 0.5, -220)
 local startTitle = StrikeGui.newTitleLabel("Title", startPanel, "NEON STRIKE", 56)
-startTitle.Position = UDim2.new(0, 0, 0, 24)
-startTitle.Size = UDim2.new(1, 0, 0, 64)
+placeF(startTitle, 0, 24, 0, 64)
 local startSub = StrikeGui.newLabel(
 	"Sub",
 	startPanel,
-	"First-person wave shooter in the void. Hold the arena, chain kills, survive.",
+	"Wave shooter in the market. Hold the arena, chain kills, survive.",
 	18,
 	Palette.DimText
 )
-startSub.Position = UDim2.new(0, 30, 0, 96)
-startSub.Size = UDim2.new(1, -60, 0, 28)
+placeF(startSub, 30, 96, -60, 28)
 local startHow = StrikeGui.newLabel(
 	"How",
 	startPanel,
@@ -449,19 +462,15 @@ local startHow = StrikeGui.newLabel(
 		.. "1 Rifle  •  2 SMG  •  3 Shotgun — each has its own ammo\n"
 		.. "Magenta Chaser rushes you  •  Orange Shooter fires back — hide behind cover\n"
 		.. "Purple Tank soaks bullets  •  Kills build your combo multiplier\n"
-		.. "Clear a wave for a bonus, +25 health and credits\n"
-		.. "B buy menu between waves  •  Right-click to scope (Rifle)  •  Headshots deal x2",
+		.. "Wave clear pays bonus + heals\n"
+		.. "B buy menu  •  Right-click scopes Rifle  •  Headshots x2",
 	18,
 	Palette.White
 )
-startHow.Position = UDim2.new(0, 30, 0, 140)
-startHow.Size = UDim2.new(1, -60, 0, 130)
+placeF(startHow, 30, 140, -60, 130)
 local startButton = StrikeGui.newButton("StartButton", startPanel, "▶  START", Palette.Cyan, 34)
 startButton.Position = UDim2.new(0.5, -160, 1, -100)
 startButton.Size = UDim2.new(0, 320, 0, 64)
-local startHint = StrikeGui.newLabel("Hint", startPanel, "v6 — buy menu (B), minimap, scope, headshots, credits.", 14, Palette.DimText)
-startHint.Position = UDim2.new(0, 0, 1, -28)
-startHint.Size = UDim2.new(1, 0, 0, 20)
 
 local endDim = StrikeGui.newDimLayer("EndDim", root)
 endDim.Visible = false
@@ -470,20 +479,15 @@ endPanel.Size = UDim2.new(0, 560, 0, 380)
 endPanel.Position = UDim2.new(0.5, -280, 0.5, -190)
 endPanel.Visible = false
 local endTitle = StrikeGui.newTitleLabel("EndTitle", endPanel, "GAME OVER", 52)
-endTitle.Position = UDim2.new(0, 0, 0, 24)
-endTitle.Size = UDim2.new(1, 0, 0, 60)
+placeF(endTitle, 0, 24, 0, 60)
 local endScore = StrikeGui.newLabel("EndScore", endPanel, "", 26, Palette.White)
-endScore.Position = UDim2.new(0, 0, 0, 100)
-endScore.Size = UDim2.new(1, 0, 0, 36)
+placeF(endScore, 0, 100, 0, 36)
 local endWave = StrikeGui.newLabel("EndWave", endPanel, "", 22, Palette.DimText)
-endWave.Position = UDim2.new(0, 0, 0, 140)
-endWave.Size = UDim2.new(1, 0, 0, 32)
+placeF(endWave, 0, 140, 0, 32)
 local endBest = StrikeGui.newLabel("EndBest", endPanel, "", 22, Palette.Yellow)
-endBest.Position = UDim2.new(0, 0, 0, 176)
-endBest.Size = UDim2.new(1, 0, 0, 32)
+placeF(endBest, 0, 176, 0, 32)
 local endKills = StrikeGui.newLabel("EndKills", endPanel, "", 20, Palette.DimText)
-endKills.Position = UDim2.new(0, 0, 0, 212)
-endKills.Size = UDim2.new(1, 0, 0, 30)
+placeF(endKills, 0, 212, 0, 30)
 local againButton = StrikeGui.newButton("AgainButton", endPanel, "↻  PLAY AGAIN", Palette.Magenta, 30)
 againButton.Position = UDim2.new(0.5, -150, 1, -92)
 againButton.Size = UDim2.new(0, 300, 0, 60)
@@ -521,13 +525,17 @@ local function buildViewmodel()
 	local accent = vmPart("Accent", Vector3.new(0.27, 0.06, 0.5), Palette.Cyan, Enum.Material.Neon)
 	local flash = vmPart("Muzzle", Vector3.new(0.22, 0.22, 0.13), Palette.Yellow, Enum.Material.Neon)
 	flash.Transparency = 1
-	receiver.Parent = model
-	barrel.Parent = model
-	grip.Parent = model
-	mag.Parent = model
-	sight.Parent = model
-	accent.Parent = model
-	flash.Parent = model
+	for _, p in ipairs({ receiver, barrel, grip, mag, sight, accent, flash }) do
+		p.Parent = model
+	end
+	if weapon.Name == "RIFLE" then
+		local scopeTube = vmPart("ScopeTube", Vector3.new(0.14, 0.14, 0.42), Color3.fromRGB(25, 25, 35), Enum.Material.SmoothPlastic)
+		local scopeLens = vmPart("ScopeLens", Vector3.new(0.12, 0.12, 0.04), Palette.Cyan, Enum.Material.Neon)
+		scopeTube.Parent = model
+		scopeLens.Parent = model
+		scopeTube.CFrame = receiver.CFrame * CFrame.new(0, 0.3, 0.05)
+		scopeLens.CFrame = receiver.CFrame * CFrame.new(0, 0.3, -0.18)
+	end
 	model.PrimaryPart = receiver
 	barrel.CFrame = receiver.CFrame * CFrame.new(0, 0.06, -(0.4 + weapon.Barrel * 0.8))
 	grip.CFrame = receiver.CFrame * CFrame.new(0, -0.35, 0.19)
@@ -680,14 +688,14 @@ end)
 startButton.MouseButton1Click:Connect(function()
 	startDim.Visible = false
 	startPanel.Visible = false
-	setMouseLock(true)
+	UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
 	remotes:FireServer("Start")
 end)
 
 againButton.MouseButton1Click:Connect(function()
 	endDim.Visible = false
 	endPanel.Visible = false
-	setMouseLock(true)
+	UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
 	remotes:FireServer("Restart")
 end)
 
@@ -696,9 +704,9 @@ player.CharacterAdded:Connect(function(character: Model)
 	if humanoid:IsA("Humanoid") then
 		humanoid.WalkSpeed = StrikeConfig.PlayerWalkSpeed
 	end
-	local root = character:WaitForChild("HumanoidRootPart")
-	if root:IsA("BasePart") then
-		local look = root.CFrame.LookVector
+	local rootPart = character:WaitForChild("HumanoidRootPart")
+	if rootPart:IsA("BasePart") then
+		local look = rootPart.CFrame.LookVector
 		camYaw = math.atan2(-look.X, -look.Z)
 		camPitch = 0
 	end
@@ -741,7 +749,7 @@ RunService.RenderStepped:Connect(function(dt: number)
 		if head and head:IsA("BasePart") then
 			local delta = UserInputService:GetMouseDelta()
 			if (snap.phase == "playing" or snap.phase == "intermission") and not buyOpen then
-				local sens = CAM_SENSITIVITY * (if scoping then 0.5 else 1)
+				local sens = CAM_SENS * (if scoping then 0.5 else 1)
 				camYaw -= delta.X * sens
 				camPitch = math.clamp(camPitch - delta.Y * sens, -1.55, 1.55)
 			end
@@ -753,6 +761,17 @@ RunService.RenderStepped:Connect(function(dt: number)
 			scoping = false
 		end
 		camera.FieldOfView = if scoping then 40 else 70
+		if scoping and snap.phase == "playing" then
+			local params = RaycastParams.new()
+			params.FilterType = Enum.RaycastFilterType.Exclude
+			local ch = player.Character
+			if ch then
+				params.FilterDescendantsInstances = { ch }
+			end
+			local res = Workspace:Raycast(camera.CFrame.Position, camera.CFrame.LookVector * StrikeConfig.ScopeRange, params)
+			local dist = if res then (res.Position - camera.CFrame.Position).Magnitude else StrikeConfig.ScopeRange
+			scopeRange.Text = string.format("%.1fm", dist)
+		end
 	end
 	if viewmodel and viewmodel.PrimaryPart then
 		if camera and viewmodel.Parent ~= camera then
@@ -806,9 +825,9 @@ RunService.RenderStepped:Connect(function(dt: number)
 	end
 	local targetGap = if firing and snap.phase == "playing" then 11 else 5
 	crossGap += (targetGap - crossGap) * math.min(dt * 10, 1)
-	crossLines.top.Position = UDim2.new(0, 11, 0, 12 - crossGap - 8)
+	crossLines.top.Position = UDim2.new(0, 11, 0, 4 - crossGap)
 	crossLines.bottom.Position = UDim2.new(0, 11, 0, 12 + crossGap)
-	crossLines.left.Position = UDim2.new(0, 12 - crossGap - 8, 0, 11)
+	crossLines.left.Position = UDim2.new(0, 4 - crossGap, 0, 11)
 	crossLines.right.Position = UDim2.new(0, 12 + crossGap, 0, 11)
 	if snap.score ~= lastScoreShown then
 		lastScoreShown = snap.score
@@ -832,19 +851,12 @@ RunService.RenderStepped:Connect(function(dt: number)
 	else
 		comboLabel.Text = ""
 	end
-	if snap.phase == "playing" then
-		if snap.queued > 0 or snap.alive > 0 then
-			statusLabel.Text = "DRONES LEFT: " .. tostring(snap.alive + snap.queued)
-		else
-			statusLabel.Text = ""
-		end
+	statusLabel.Text = if snap.phase == "playing" then
+		if snap.queued > 0 or snap.alive > 0 then "DRONES LEFT: " .. tostring(snap.alive + snap.queued) else ""
 	elseif snap.phase == "intermission" then
-		statusLabel.Text = "WAVE CLEARED  •  NEXT WAVE IN " .. tostring(snap.intermission) .. "  •  [B] BUY MENU"
-	elseif snap.phase == "menu" then
-		statusLabel.Text = ""
+		"WAVE CLEARED  •  NEXT WAVE IN " .. tostring(snap.intermission) .. "  •  [B] BUY MENU"
 	else
-		statusLabel.Text = ""
-	end
+		""
 	if snap.phase == "playing" or snap.phase == "intermission" then
 		if not GuiService.MenuIsOpen and not buyOpen then
 			UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
@@ -852,7 +864,7 @@ RunService.RenderStepped:Connect(function(dt: number)
 		lastPhase = snap.phase
 	elseif snap.phase ~= lastPhase then
 		lastPhase = snap.phase
-		setMouseLock(false)
+		UserInputService.MouseBehavior = Enum.MouseBehavior.Default
 	end
 	local inMenu = snap.phase == "menu"
 	startDim.Visible = inMenu
@@ -874,9 +886,9 @@ RunService.RenderStepped:Connect(function(dt: number)
 		btn.BackgroundColor3 = if (snap.credits or 0) >= StrikeConfig.Shop[id].Price then Palette.Cyan else Palette.DimText
 	end
 	scopeFrame.Visible = scoping and snap.phase == "playing"
-	local inGame2 = snap.phase == "playing" or snap.phase == "intermission"
-	mapFrame.Visible = inGame2
-	calloutFrame.Visible = inGame2
+	local inGame = snap.phase == "playing" or snap.phase == "intermission"
+	mapFrame.Visible = inGame
+	calloutFrame.Visible = inGame
 	if snap.foes then
 		for i, dot in ipairs(mapDots) do
 			local foe = snap.foes[i]
@@ -896,22 +908,21 @@ RunService.RenderStepped:Connect(function(dt: number)
 	end
 	if snap.hp <= 30 and not lowHpCalled and (snap.phase == "playing" or snap.phase == "intermission") then
 		lowHpCalled = true
-		addCallout("Nova: You're hurt — get behind cover!")
+		addCallout("Nova: Get behind cover!")
 	elseif snap.hp > 50 then
 		lowHpCalled = false
 	end
 	if snap.combo >= 4 and comboCalled < snap.combo then
 		comboCalled = snap.combo
-		addCallout("Kilo: " .. tostring(snap.combo) .. " in a row — keep it up!")
+		addCallout("Kilo: " .. tostring(snap.combo) .. " in a row!")
 	elseif snap.combo == 0 then
 		comboCalled = 0
 	end
 	if snap.phase == "playing" and now - lastCallout > 20 then
 		lastCallout = now
-		local lines = { "Orion: Watch the stalls, they flank.", "Nova: Sites are clear — push up.", "Kilo: Save credits for Heavy Kevlar." }
+		local lines = { "Orion: Watch the stalls.", "Nova: Sites clear — push up.", "Kilo: Save for Heavy Kevlar." }
 		addCallout(lines[math.random(1, #lines)])
 	end
-	local inGame = snap.phase == "playing" or snap.phase == "intermission"
 	crosshair.Visible = inGame and not scoping
 	healthPanel.Visible = inGame
 	ammoLabel.Visible = inGame

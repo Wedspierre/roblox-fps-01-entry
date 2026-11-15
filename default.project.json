@@ -20,9 +20,9 @@
     "Outlines": false,
     "Technology": "Voxel",
     "OutdoorAmbient": [
-     0.62,
-     0.58,
-     0.66
+     0.65,
+     0.65,
+     0.75
     ]
    },
    "Sky": {
@@ -209,7 +209,7 @@
       8,
       1
      ],
-     "Transparency": 0.35
+     "Transparency": 0
     }
    },
    "WallS": {
@@ -234,7 +234,7 @@
       8,
       1
      ],
-     "Transparency": 0.35
+     "Transparency": 0
     }
    },
    "WallE": {
@@ -259,7 +259,7 @@
       8,
       140
      ],
-     "Transparency": 0.35
+     "Transparency": 0
     }
    },
    "WallW": {
@@ -284,7 +284,7 @@
       8,
       140
      ],
-     "Transparency": 0.35
+     "Transparency": 0
     }
    },
    "PillarNE": {
@@ -393,9 +393,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.14,
-      0.14,
-      0.3
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -418,9 +418,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.14,
-      0.14,
-      0.3
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -443,9 +443,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.14,
-      0.14,
-      0.3
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -468,9 +468,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.14,
-      0.14,
-      0.3
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -493,9 +493,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.14,
-      0.14,
-      0.3
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -518,9 +518,9 @@
      "Anchored": true,
      "CanCollide": true,
      "Color": [
-      0.14,
-      0.14,
-      0.3
+      0.62,
+      0.46,
+      0.28
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -1479,9 +1479,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.8,
       0.15,
-      0.15
+      0.35,
+      0.9
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -1529,9 +1529,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.8,
       0.15,
-      0.15
+      0.35,
+      0.9
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -1579,9 +1579,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.8,
       0.15,
-      0.15
+      0.35,
+      0.9
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -1829,9 +1829,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.8,
       0.15,
-      0.15
+      0.35,
+      0.9
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -1879,9 +1879,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.8,
       0.15,
-      0.15
+      0.35,
+      0.9
      ],
      "Locked": true,
      "Material": "SmoothPlastic",
@@ -1929,9 +1929,9 @@
      "Anchored": true,
      "CanCollide": false,
      "Color": [
-      0.8,
       0.15,
-      0.15
+      0.35,
+      0.9
      ],
      "Locked": true,
      "Material": "SmoothPlastic",

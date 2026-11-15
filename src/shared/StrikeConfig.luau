@@ -19,18 +19,9 @@ StrikeConfig.Palette = {
 	DimText = Color3.fromRGB(140, 160, 200),
 }
 
--- The playfield. Enemies spawn at the rim and hunt inward.
+-- The playfield. Enemies spawn at the rim and hunt inward on foot.
 StrikeConfig.ArenaHalfSize = 68
 StrikeConfig.ArenaFloorY = 0
-
--- Enemy drones hover above the floor so they fly OVER the low cover
--- blocks (cover tops sit at y = 3); the player hides behind cover on
--- the ground, the drones hunt from above.
-StrikeConfig.HoverY = {
-	Chaser = 5.5,
-	Shooter = 5.5,
-	Tank = 6.5,
-}
 
 -- Player.
 StrikeConfig.PlayerMaxHealth = 100
@@ -38,12 +29,13 @@ StrikeConfig.PlayerWalkSpeed = 16
 StrikeConfig.PlayerSprintSpeed = 26
 StrikeConfig.WaveClearHeal = 25
 
--- Gun.
-StrikeConfig.MagazineSize = 30
-StrikeConfig.FireCooldown = 0.16 -- seconds between shots
-StrikeConfig.ReloadSeconds = 1.8
-StrikeConfig.BulletDamage = 1
-StrikeConfig.MaxRange = 300
+-- Guns. Keys 1/2/3 switch. The server validates cooldown, damage,
+-- pellets, spread and range per weapon from this same table.
+StrikeConfig.Weapons = {
+	{ Name = "RIFLE", Damage = 1, Cooldown = 0.16, Mag = 30, Reload = 1.4, Pellets = 1, Spread = 0.012, Range = 300, Color = Color3.fromRGB(0, 240, 255), Barrel = 0.55 },
+	{ Name = "SMG", Damage = 1, Cooldown = 0.08, Mag = 40, Reload = 1.1, Pellets = 1, Spread = 0.035, Range = 220, Color = Color3.fromRGB(255, 200, 80), Barrel = 0.35 },
+	{ Name = "SHOTGUN", Damage = 1, Cooldown = 0.85, Mag = 6, Reload = 1.9, Pellets = 6, Spread = 0.07, Range = 130, Color = Color3.fromRGB(255, 90, 90), Barrel = 0.6 },
+}
 
 -- Waves. Each wave spawns more drones and tougher ones.
 StrikeConfig.WaveBaseEnemyCount = 4

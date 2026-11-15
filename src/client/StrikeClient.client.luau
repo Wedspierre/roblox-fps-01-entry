@@ -62,6 +62,14 @@ local lastClientShot = 0
 local sprinting = false
 local lastPhase = "menu"
 
+-- Manual first-person camera angles. The default camera module proved
+-- unreliable in Studio Play (mouse lock alone did not turn the view),
+-- so the client owns the camera now: yaw/pitch from the mouse delta,
+-- camera glued to the head every frame.
+local camYaw = 0
+local camPitch = 0
+local CAM_SENSITIVITY = 0.0035
+
 -- ============ GUI root (fully transparent, the arena shows through) ============
 local gui = Instance.new("ScreenGui")
 gui.Name = "StrikeGui"
@@ -227,7 +235,7 @@ startHow.Size = UDim2.new(1, -60, 0, 130)
 local startButton = StrikeGui.newButton("StartButton", startPanel, "▶  START", Palette.Cyan, 34)
 startButton.Position = UDim2.new(0.5, -160, 1, -100)
 startButton.Size = UDim2.new(0, 320, 0, 64)
-local startHint = StrikeGui.newLabel("Hint", startPanel, "v2 — click START, then look around with the mouse.", 14, Palette.DimText)
+local startHint = StrikeGui.newLabel("Hint", startPanel, "v3 — click START, then look around with the mouse.", 14, Palette.DimText)
 startHint.Position = UDim2.new(0, 0, 1, -28)
 startHint.Size = UDim2.new(1, 0, 0, 20)
 
@@ -361,6 +369,14 @@ player.CharacterAdded:Connect(function(character: Model)
 	if humanoid:IsA("Humanoid") then
 		humanoid.WalkSpeed = StrikeConfig.PlayerWalkSpeed
 	end
+	-- Face the camera the way the character spawns facing, so the first
+	-- frame after (re)spawn does not snap the view around.
+	local root = character:WaitForChild("HumanoidRootPart")
+	if root:IsA("BasePart") then
+		local look = root.CFrame.LookVector
+		camYaw = math.atan2(-look.X, -look.Z)
+		camPitch = 0
+	end
 	sprinting = false
 end)
 
@@ -385,6 +401,26 @@ end)
 -- ============ HUD refresh + hold-to-fire loop ============
 RunService.RenderStepped:Connect(function()
 	local now = os.clock()
+	-- Manual first-person camera: the client rotates the view itself
+	-- from the mouse delta instead of trusting the default camera
+	-- module. The delta is drained every frame but only applied while
+	-- playing, so moving the mouse over a menu never spins the view.
+	local camera = Workspace.CurrentCamera
+	if camera then
+		camera.CameraType = Enum.CameraType.Scriptable
+		local character = player.Character
+		local head = character and character:FindFirstChild("Head")
+		if head and head:IsA("BasePart") then
+			local delta = UserInputService:GetMouseDelta()
+			if snap.phase == "playing" or snap.phase == "intermission" then
+				camYaw -= delta.X * CAM_SENSITIVITY
+				camPitch = math.clamp(camPitch - delta.Y * CAM_SENSITIVITY, -1.55, 1.55)
+			end
+			camera.CFrame = CFrame.new(head.Position)
+				* CFrame.Angles(0, camYaw, 0)
+				* CFrame.Angles(camPitch, 0, 0)
+		end
+	end
 	if firing and snap.phase == "playing" then
 		shootOnce()
 	end

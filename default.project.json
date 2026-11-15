@@ -1,0 +1,1298 @@
+{
+  "name": "neon-strike",
+  "tree": {
+    "$className": "DataModel",
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0.05,
+          0.05,
+          0.1
+        ],
+        "Brightness": 2,
+        "ClockTime": 0,
+        "ColorShift_Top": [
+          0.1,
+          0.05,
+          0.25
+        ],
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Voxel"
+      },
+      "Sky": {
+        "$className": "Sky",
+        "$properties": {
+          "CelestialBodiesShown": false
+        }
+      }
+    },
+    "Players": {
+      "$properties": {
+        "CharacterAutoLoads": true
+      }
+    },
+    "ReplicatedStorage": {
+      "Shared": {
+        "$path": "src/shared"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "ArenaFloor": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.05,
+            0.05,
+            0.16
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            0,
+            -1,
+            0
+          ],
+          "Size": [
+            140,
+            2,
+            140
+          ]
+        }
+      },
+      "GridX1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -60,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridX2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -40,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridX3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -20,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridX4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridX5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            20,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridX6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            40,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridX7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            60,
+            0.1,
+            0
+          ],
+          "Size": [
+            1.2,
+            0.3,
+            140
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            -60
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            -40
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            -20
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            0
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            20
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            40
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "GridZ7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.1,
+            60
+          ],
+          "Size": [
+            140,
+            0.3,
+            1.2
+          ],
+          "Transparency": 0.25
+        }
+      },
+      "TrimN": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.4,
+            -69.5
+          ],
+          "Size": [
+            140,
+            0.8,
+            1
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "TrimS": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.4,
+            69.5
+          ],
+          "Size": [
+            140,
+            0.8,
+            1
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "TrimE": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            69.5,
+            0.4,
+            0
+          ],
+          "Size": [
+            1,
+            0.8,
+            140
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "TrimW": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -69.5,
+            0.4,
+            0
+          ],
+          "Size": [
+            1,
+            0.8,
+            140
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "WallN": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.05,
+            0.05,
+            0.16
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            0,
+            6,
+            -70
+          ],
+          "Size": [
+            140,
+            12,
+            1
+          ],
+          "Transparency": 0.6
+        }
+      },
+      "WallS": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.05,
+            0.05,
+            0.16
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            0,
+            6,
+            70
+          ],
+          "Size": [
+            140,
+            12,
+            1
+          ],
+          "Transparency": 0.6
+        }
+      },
+      "WallE": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.05,
+            0.05,
+            0.16
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            70,
+            6,
+            0
+          ],
+          "Size": [
+            1,
+            12,
+            140
+          ],
+          "Transparency": 0.6
+        }
+      },
+      "WallW": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.05,
+            0.05,
+            0.16
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -70,
+            6,
+            0
+          ],
+          "Size": [
+            1,
+            12,
+            140
+          ],
+          "Transparency": 0.6
+        }
+      },
+      "PillarNE": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            60,
+            6,
+            -60
+          ],
+          "Size": [
+            4,
+            12,
+            4
+          ],
+          "Transparency": 0.15
+        }
+      },
+      "PillarNW": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -60,
+            6,
+            -60
+          ],
+          "Size": [
+            4,
+            12,
+            4
+          ],
+          "Transparency": 0.15
+        }
+      },
+      "PillarSE": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            60,
+            6,
+            60
+          ],
+          "Size": [
+            4,
+            12,
+            4
+          ],
+          "Transparency": 0.15
+        }
+      },
+      "PillarSW": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -60,
+            6,
+            60
+          ],
+          "Size": [
+            4,
+            12,
+            4
+          ],
+          "Transparency": 0.15
+        }
+      },
+      "Cover1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.08,
+            0.08,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -25,
+            1.5,
+            -15
+          ],
+          "Size": [
+            12,
+            3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Cover2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.08,
+            0.08,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            25,
+            1.5,
+            -25
+          ],
+          "Size": [
+            3,
+            3,
+            12
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Cover3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.08,
+            0.08,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -30,
+            1.5,
+            25
+          ],
+          "Size": [
+            3,
+            3,
+            12
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Cover4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.08,
+            0.08,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            30,
+            1.5,
+            20
+          ],
+          "Size": [
+            12,
+            3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Cover5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.08,
+            0.08,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            0,
+            1.5,
+            -40
+          ],
+          "Size": [
+            14,
+            3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Cover6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.08,
+            0.08,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            0,
+            1.5,
+            40
+          ],
+          "Size": [
+            14,
+            3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CoverTop1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -25,
+            3.1,
+            -15
+          ],
+          "Size": [
+            12,
+            0.3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CoverTop2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            25,
+            3.1,
+            -25
+          ],
+          "Size": [
+            3,
+            0.3,
+            12
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CoverTop3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -30,
+            3.1,
+            25
+          ],
+          "Size": [
+            3,
+            0.3,
+            12
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CoverTop4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            30,
+            3.1,
+            20
+          ],
+          "Size": [
+            12,
+            0.3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CoverTop5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            3.1,
+            -40
+          ],
+          "Size": [
+            14,
+            0.3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CoverTop6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            3.1,
+            40
+          ],
+          "Size": [
+            14,
+            0.3,
+            3
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "CenterPad": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.7,
+            0.3,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.15,
+            0
+          ],
+          "Size": [
+            6,
+            0.3,
+            6
+          ],
+          "Transparency": 0.3
+        }
+      },
+      "Orb1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.7,
+            0.3,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -45,
+            12,
+            -45
+          ],
+          "Shape": "Ball",
+          "Size": [
+            5,
+            5,
+            5
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            45,
+            16,
+            -45
+          ],
+          "Shape": "Ball",
+          "Size": [
+            6,
+            6,
+            6
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -45,
+            9,
+            45
+          ],
+          "Shape": "Ball",
+          "Size": [
+            4,
+            4,
+            4
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.7,
+            0.3,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            45,
+            13,
+            45
+          ],
+          "Shape": "Ball",
+          "Size": [
+            5,
+            5,
+            5
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            -78,
+            18,
+            0
+          ],
+          "Shape": "Ball",
+          "Size": [
+            6,
+            6,
+            6
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            78,
+            11,
+            0
+          ],
+          "Shape": "Ball",
+          "Size": [
+            4,
+            4,
+            4
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            20,
+            -78
+          ],
+          "Shape": "Ball",
+          "Size": [
+            5,
+            5,
+            5
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "Orb8": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.7,
+            0.3,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            15,
+            78
+          ],
+          "Shape": "Ball",
+          "Size": [
+            6,
+            6,
+            6
+          ],
+          "Transparency": 0.1
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            1,
+            0.6
+          ],
+          "Duration": 0,
+          "Enabled": true,
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            1,
+            45
+          ],
+          "Size": [
+            8,
+            1,
+            8
+          ],
+          "Transparency": 0.4,
+          "Neutral": true
+        }
+      }
+    }
+  }
+}

@@ -22,8 +22,12 @@ local StrikeGui = require(ReplicatedStorage.Shared.StrikeGui)
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- First person: native mouse look, WASD movement, no third-person body.
-player.CameraMode = Enum.CameraMode.LockFirstPerson
+-- CameraMode stays Classic on purpose. LockFirstPerson makes the
+-- engine capture the mouse to the screen center the moment the player
+-- spawns — before START is even clicked — so the cursor freezes and
+-- the START button cannot be reached. First person here is done
+-- entirely by the manual camera below; the engine must never own it.
+player.CameraMode = Enum.CameraMode.Classic
 
 -- The engine does not reliably lock the mouse by itself in Studio Play:
 -- clicking the START button leaves the cursor free and the view never
@@ -235,7 +239,7 @@ startHow.Size = UDim2.new(1, -60, 0, 130)
 local startButton = StrikeGui.newButton("StartButton", startPanel, "▶  START", Palette.Cyan, 34)
 startButton.Position = UDim2.new(0.5, -160, 1, -100)
 startButton.Size = UDim2.new(0, 320, 0, 64)
-local startHint = StrikeGui.newLabel("Hint", startPanel, "v3 — click START, then look around with the mouse.", 14, Palette.DimText)
+local startHint = StrikeGui.newLabel("Hint", startPanel, "v4 — click START, then look around with the mouse.", 14, Palette.DimText)
 startHint.Position = UDim2.new(0, 0, 1, -28)
 startHint.Size = UDim2.new(1, 0, 0, 20)
 

@@ -543,9 +543,9 @@
           "Anchored": true,
           "CanCollide": false,
           "Color": [
-            0.1,
-            0.1,
-            0.22
+            0.45,
+            0.22,
+            0.16
           ],
           "Locked": true,
           "Material": "SmoothPlastic",
@@ -559,7 +559,7 @@
             12,
             1
           ],
-          "Transparency": 0.45
+          "Transparency": 0.35
         }
       },
       "WallS": {
@@ -568,9 +568,9 @@
           "Anchored": true,
           "CanCollide": false,
           "Color": [
-            0.1,
-            0.1,
-            0.22
+            0.45,
+            0.22,
+            0.16
           ],
           "Locked": true,
           "Material": "SmoothPlastic",
@@ -584,7 +584,7 @@
             12,
             1
           ],
-          "Transparency": 0.45
+          "Transparency": 0.35
         }
       },
       "WallE": {
@@ -593,9 +593,9 @@
           "Anchored": true,
           "CanCollide": false,
           "Color": [
-            0.1,
-            0.1,
-            0.22
+            0.45,
+            0.22,
+            0.16
           ],
           "Locked": true,
           "Material": "SmoothPlastic",
@@ -609,7 +609,7 @@
             12,
             140
           ],
-          "Transparency": 0.45
+          "Transparency": 0.35
         }
       },
       "WallW": {
@@ -618,9 +618,9 @@
           "Anchored": true,
           "CanCollide": false,
           "Color": [
-            0.1,
-            0.1,
-            0.22
+            0.45,
+            0.22,
+            0.16
           ],
           "Locked": true,
           "Material": "SmoothPlastic",
@@ -634,7 +634,7 @@
             12,
             140
           ],
-          "Transparency": 0.45
+          "Transparency": 0.35
         }
       },
       "PillarNE": {
@@ -1296,6 +1296,1756 @@
           ],
           "Transparency": 0.4,
           "Neutral": true
+        }
+      },
+      "SiteA": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.15,
+            -55
+          ],
+          "Size": [
+            12,
+            0.3,
+            12
+          ],
+          "Transparency": 0.3
+        }
+      },
+      "SiteB": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            1,
+            0.15,
+            0.75
+          ],
+          "Locked": true,
+          "Material": "Neon",
+          "Position": [
+            0,
+            0.15,
+            55
+          ],
+          "Size": [
+            12,
+            0.3,
+            12
+          ],
+          "Transparency": 0.3
+        }
+      },
+      "Cover7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.5,
+            0.32,
+            0.18
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            1.2,
+            -30
+          ],
+          "Size": [
+            6,
+            2.4,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-40_-30_-2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -42.7,
+            2.4,
+            -31.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-40_-30_2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -37.3,
+            2.4,
+            -31.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-40_-30_-2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -42.7,
+            2.4,
+            -28.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-40_-30_2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -37.3,
+            2.4,
+            -28.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-40_-30_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            3.6,
+            -31.75
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-40_-30_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            3.6,
+            -31.05
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-40_-30_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            3.6,
+            -30.35
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-40_-30_3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            3.6,
+            -29.65
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-40_-30_4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            3.6,
+            -28.95
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-40_-30_5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40,
+            3.6,
+            -28.25
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_-40_-30_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.7,
+            0.3
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -41.8,
+            3.0,
+            -30
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_-40_-30_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            1,
+            0.85,
+            0
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -40.0,
+            3.0,
+            -30
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_-40_-30_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -38.199999999999996,
+            3.0,
+            -30
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover8": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.5,
+            0.32,
+            0.18
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            1.2,
+            30
+          ],
+          "Size": [
+            6,
+            2.4,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_40_30_-2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            37.3,
+            2.4,
+            28.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_40_30_2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            42.7,
+            2.4,
+            28.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_40_30_-2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            37.3,
+            2.4,
+            31.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_40_30_2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            42.7,
+            2.4,
+            31.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_40_30_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            3.6,
+            28.25
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_40_30_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            3.6,
+            28.95
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_40_30_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            3.6,
+            29.65
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_40_30_3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            3.6,
+            30.35
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_40_30_4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            3.6,
+            31.05
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_40_30_5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40,
+            3.6,
+            31.75
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_40_30_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.7,
+            0.3
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            38.2,
+            3.0,
+            30
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_40_30_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            1,
+            0.85,
+            0
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            40.0,
+            3.0,
+            30
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_40_30_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            41.800000000000004,
+            3.0,
+            30
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover9": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.5,
+            0.32,
+            0.18
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            1.2,
+            45
+          ],
+          "Size": [
+            6,
+            2.4,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-15_45_-2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -17.7,
+            2.4,
+            43.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-15_45_2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -12.3,
+            2.4,
+            43.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-15_45_-2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -17.7,
+            2.4,
+            46.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_-15_45_2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -12.3,
+            2.4,
+            46.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-15_45_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            3.6,
+            43.25
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-15_45_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            3.6,
+            43.95
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-15_45_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            3.6,
+            44.65
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-15_45_3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            3.6,
+            45.35
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-15_45_4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            3.6,
+            46.05
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_-15_45_5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15,
+            3.6,
+            46.75
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_-15_45_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.7,
+            0.3
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -16.8,
+            3.0,
+            45
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_-15_45_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            1,
+            0.85,
+            0
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -15.0,
+            3.0,
+            45
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_-15_45_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -13.200000000000001,
+            3.0,
+            45
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover10": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.5,
+            0.32,
+            0.18
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            1.2,
+            -45
+          ],
+          "Size": [
+            6,
+            2.4,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_20_-45_-2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            17.3,
+            2.4,
+            -46.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_20_-45_2.7_-1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            22.7,
+            2.4,
+            -46.2
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_20_-45_-2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            17.3,
+            2.4,
+            -43.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallPost_20_-45_2.7_1.2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.25,
+            0.16,
+            0.1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            22.7,
+            2.4,
+            -43.8
+          ],
+          "Size": [
+            0.3,
+            3.6,
+            0.3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_20_-45_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            3.6,
+            -46.75
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_20_-45_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            3.6,
+            -46.05
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_20_-45_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            3.6,
+            -45.35
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_20_-45_3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            3.6,
+            -44.65
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_20_-45_4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.8,
+            0.15,
+            0.15
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            3.6,
+            -43.95
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Awning_20_-45_5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.92,
+            0.92,
+            0.9
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20,
+            3.6,
+            -43.25
+          ],
+          "Size": [
+            6.4,
+            0.15,
+            0.7
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_20_-45_0": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.7,
+            0.3
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            18.2,
+            3.0,
+            -45
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_20_-45_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            1,
+            0.85,
+            0
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            20.0,
+            3.0,
+            -45
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "StallCrate_20_-45_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0,
+            0.85,
+            1
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            21.8,
+            3.0,
+            -45
+          ],
+          "Size": [
+            1.2,
+            1.2,
+            1.2
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover11": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.55,
+            0.38,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -50,
+            1.5,
+            10
+          ],
+          "Size": [
+            3,
+            3,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "CrateLid_-50_10": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.35,
+            0.22,
+            0.12
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -50,
+            3.1,
+            10
+          ],
+          "Size": [
+            3.1,
+            0.2,
+            3.1
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover12": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.55,
+            0.38,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            50,
+            1.5,
+            -10
+          ],
+          "Size": [
+            3,
+            3,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "CrateLid_50_-10": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.35,
+            0.22,
+            0.12
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            50,
+            3.1,
+            -10
+          ],
+          "Size": [
+            3.1,
+            0.2,
+            3.1
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover13": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.55,
+            0.38,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -10,
+            1.5,
+            -50
+          ],
+          "Size": [
+            3,
+            3,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "CrateLid_-10_-50": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.35,
+            0.22,
+            0.12
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -10,
+            3.1,
+            -50
+          ],
+          "Size": [
+            3.1,
+            0.2,
+            3.1
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover14": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.55,
+            0.38,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            15,
+            1.5,
+            55
+          ],
+          "Size": [
+            3,
+            3,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "CrateLid_15_55": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.35,
+            0.22,
+            0.12
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            15,
+            3.1,
+            55
+          ],
+          "Size": [
+            3.1,
+            0.2,
+            3.1
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover15": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.55,
+            0.38,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -55,
+            1.5,
+            -45
+          ],
+          "Size": [
+            3,
+            3,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "CrateLid_-55_-45": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.35,
+            0.22,
+            0.12
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            -55,
+            3.1,
+            -45
+          ],
+          "Size": [
+            3.1,
+            0.2,
+            3.1
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "Cover16": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": true,
+          "Color": [
+            0.55,
+            0.38,
+            0.2
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            55,
+            1.5,
+            50
+          ],
+          "Size": [
+            3,
+            3,
+            3
+          ],
+          "Transparency": 0.0
+        }
+      },
+      "CrateLid_55_50": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Color": [
+            0.35,
+            0.22,
+            0.12
+          ],
+          "Locked": true,
+          "Material": "SmoothPlastic",
+          "Position": [
+            55,
+            3.1,
+            50
+          ],
+          "Size": [
+            3.1,
+            0.2,
+            3.1
+          ],
+          "Transparency": 0.0
         }
       }
     }

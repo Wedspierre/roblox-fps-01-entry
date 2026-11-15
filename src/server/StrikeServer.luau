@@ -1,13 +1,3 @@
--- StrikeServer: the authoritative NEON STRIKE server. One state table
--- owns the whole run; the client renders the HUD and menus and sends
--- input. Enemies are humanoid void-runners (head, torso, arms, legs)
--- that walk the arena floor and hunt the nearest player; the server
--- moves them, animates their walk, validates every shot, and owns
--- score, combo, waves and the game-over state.
---
--- NOTE: this file is a ModuleScript, required by init.server.luau as
--- require(script.StrikeServer). A .server.luau file can never be
--- required (Roblox only requires ModuleScripts).
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -19,27 +9,24 @@ local EnemyTypes = require(ReplicatedStorage.Shared.EnemyTypes)
 
 local StrikeServer = {}
 
--- The single state table. Everything about the run lives here.
 local state = {
-	phase = "menu", -- menu | playing | intermission | over
+	phase = "menu",
 	wave = 0,
 	score = 0,
 	best = 0,
 	combo = 0,
 	comboTimer = 0,
-	enemies = {}, -- {id, kind, def, model, parts, pos, yaw, walkPhase, barFill, hp, maxHp, lastTouch, lastShot, flashUntil}
-	projectiles = {}, -- {part, vel, life, damage}
+	enemies = {},
+	projectiles = {},
 	spawnQueue = 0,
 	spawnTimer = 0,
 	intermissionTimer = 0,
 	nextEnemyId = 1,
 	kills = 0,
+	credits = StrikeConfig.StartCredits,
 }
 
--- Per-player gun state. Ammo and last-shot time are per weapon
--- (1 Rifle, 2 SMG, 3 Shotgun); reload always refills the weapon
--- being reloaded.
-local gun = {} -- [Player] = {ammo = {n, n, n}, reloading, reloadEnd, reloadWeapon, lastShot = {t, t, t}}
+local gun = {}
 
 local remotes: RemoteEvent
 local coverParts = {}
@@ -53,6 +40,7 @@ local function getGun(player: Player)
 			reloadEnd = 0,
 			reloadWeapon = 1,
 			lastShot = { 0, 0, 0 },
+			armor = 0,
 		}
 		gun[player] = g
 	end
@@ -83,7 +71,6 @@ local function getPlayerHumanoid(player: Player): Humanoid?
 	return character:FindFirstChildOfClass("Humanoid")
 end
 
--- Nearest living player to a position (the drones hunt this one).
 local function nearestPlayer(pos: Vector3): (Player?, Vector3?)
 	local bestPlayer: Player? = nil
 	local bestPos: Vector3? = nil
@@ -115,10 +102,12 @@ local function hurtPlayer(player: Player, damage: number)
 	if not humanoid or humanoid.Health <= 0 then
 		return
 	end
-	-- Taking a hit resets the combo.
 	state.combo = 0
 	state.comboTimer = 0
-	humanoid:TakeDamage(damage)
+	local g = getGun(player)
+	local absorbed = math.min(g.armor, math.ceil(damage * 0.5))
+	g.armor -= absorbed
+	humanoid:TakeDamage(damage - absorbed)
 	remotes:FireClient(player, "Hurt")
 	if humanoid.Health <= 0 then
 		gameOver()
@@ -164,7 +153,6 @@ local function startWave(wave: number)
 	end
 end
 
--- (Re)start a run for the player who pressed the button.
 local function resetRun(player: Player)
 	clearField()
 	state.score = 0
@@ -173,10 +161,11 @@ local function resetRun(player: Player)
 	state.kills = 0
 	state.wave = 0
 	state.spawnQueue = 0
+	state.credits = StrikeConfig.StartCredits
 	local g = getGun(player)
 	g.ammo = { StrikeConfig.Weapons[1].Mag, StrikeConfig.Weapons[2].Mag, StrikeConfig.Weapons[3].Mag }
 	g.reloading = false
-	-- Fresh body at the spawn pad, full health.
+	g.armor = 0
 	pcall(function()
 		player:LoadCharacter()
 	end)
@@ -210,8 +199,6 @@ local function makeHealthBar(part: BasePart, sizeY: number): Frame
 	return fill
 end
 
--- One body part of a humanoid enemy. Darker torso/head, neon limbs,
--- white visor so the face reads at a glance in the dark arena.
 local function bodyPart(name: string, size: Vector3, color: Color3, material: Enum.Material): BasePart
 	local p = Instance.new("Part")
 	p.Name = name
@@ -283,7 +270,7 @@ local function spawnEnemy(kind: string)
 	})
 end
 
-local function killEnemy(index: number, shooter: Player?)
+local function killEnemy(index: number, shooter: Player?, headshot: boolean?)
 	local enemy = state.enemies[index]
 	if not enemy then
 		return
@@ -295,24 +282,23 @@ local function killEnemy(index: number, shooter: Player?)
 	state.comboTimer = StrikeConfig.ComboWindowSeconds
 	local gain = math.floor(StrikeConfig.KillScore * comboMultiplier() + 0.5)
 	state.score += gain
+	state.credits = math.min(state.credits + StrikeConfig.KillCredits, StrikeConfig.CreditCap)
 	if shooter then
-		remotes:FireClient(shooter, "Hit", true, true, gain, enemy.kind)
+		remotes:FireClient(shooter, "Hit", true, true, gain, enemy.kind, headshot)
 	end
 end
 
-local function damageEnemy(enemy, index: number, damage: number, shooter: Player?)
+local function damageEnemy(enemy, index: number, damage: number, shooter: Player?, headshot: boolean?)
 	enemy.hp -= damage
 	enemy.flashUntil = os.clock() + 0.08
 	enemy.barFill.Size = UDim2.fromScale(math.max(enemy.hp / enemy.maxHp, 0), 1)
 	if enemy.hp <= 0 then
-		killEnemy(index, shooter)
+		killEnemy(index, shooter, headshot)
 	elseif shooter then
-		remotes:FireClient(shooter, "Hit", true, false, 0)
+		remotes:FireClient(shooter, "Hit", true, false, damage, enemy.kind, headshot)
 	end
 end
 
--- Find the enemy whose model this part belongs to (raycast hits
--- return one body part; any part of the humanoid counts).
 local function findEnemyByPart(part: BasePart): (any, number?)
 	for i, enemy in ipairs(state.enemies) do
 		if part:IsDescendantOf(enemy.model) then
@@ -368,7 +354,6 @@ local function onShoot(player: Player, origin: Vector3, direction: Vector3, weap
 	if now - g.lastShot[wi] < weapon.Cooldown then
 		return
 	end
-	-- The shot must come from the shooter's own head (first person).
 	if (origin - head.Position).Magnitude > 10 then
 		return
 	end
@@ -393,7 +378,6 @@ local function onShoot(player: Player, origin: Vector3, direction: Vector3, weap
 		end
 	end
 	params.FilterDescendantsInstances = exclude
-	-- One raycast per pellet; each pellet spreads from the aim line.
 	for _ = 1, weapon.Pellets do
 		local spread = Vector3.new(
 			(math.random() - 0.5) * 2 * weapon.Spread,
@@ -405,7 +389,9 @@ local function onShoot(player: Player, origin: Vector3, direction: Vector3, weap
 		if result then
 			local enemy, index = findEnemyByPart(result.Instance)
 			if enemy and index then
-				damageEnemy(enemy, index, weapon.Damage, player)
+				local hs = result.Instance.Name == "Head"
+				local dmg = weapon.Damage * (if hs then StrikeConfig.HeadshotMult else 1)
+				damageEnemy(enemy, index, dmg, player, hs)
 			end
 		end
 	end
@@ -425,6 +411,44 @@ local function onReload(player: Player, weaponIndex: any)
 	g.reloadEnd = os.clock() + StrikeConfig.Weapons[wi].Reload
 end
 
+local function onBuy(player: Player, itemId: any)
+	if state.phase ~= "intermission" then
+		return
+	end
+	local item = StrikeConfig.Shop[itemId]
+	if not item or state.credits < item.Price then
+		return
+	end
+	local g = getGun(player)
+	if itemId == "Light" or itemId == "Heavy" then
+		if g.armor >= item.Armor then
+			return
+		end
+		g.armor = item.Armor
+	elseif itemId == "Medkit" then
+		local h = getPlayerHumanoid(player)
+		if not h or h.Health >= StrikeConfig.PlayerMaxHealth then
+			return
+		end
+		h.Health = math.min(h.Health + item.Heal, StrikeConfig.PlayerMaxHealth)
+	elseif itemId == "Ammo" then
+		local full = true
+		for i, w in ipairs(StrikeConfig.Weapons) do
+			if g.ammo[i] < w.Mag then
+				full = false
+			end
+		end
+		if full then
+			return
+		end
+		for i, w in ipairs(StrikeConfig.Weapons) do
+			g.ammo[i] = w.Mag
+		end
+		g.reloading = false
+	end
+	state.credits -= item.Price
+end
+
 local function onClientAction(player: Player, action: string, a: any, b: any, c: any)
 	if action == "Shoot" then
 		if typeof(a) == "Vector3" and typeof(b) == "Vector3" then
@@ -432,6 +456,8 @@ local function onClientAction(player: Player, action: string, a: any, b: any, c:
 		end
 	elseif action == "Reload" then
 		onReload(player, a)
+	elseif action == "Buy" then
+		onBuy(player, a)
 	elseif action == "Start" or action == "Restart" then
 		if state.phase == "menu" or state.phase == "over" then
 			resetRun(player)
@@ -448,7 +474,6 @@ local function updateEnemies(dt: number)
 		if not enemy.model.Parent then
 			table.remove(state.enemies, i)
 		else
-			-- Hit flash wears off (all body parts together).
 			local flash = now <= enemy.flashUntil
 			for _, part in pairs(enemy.parts) do
 				part.Transparency = if flash then 0.5 else 0
@@ -463,19 +488,16 @@ local function updateEnemies(dt: number)
 				speed = math.min(speed, def.Speed * 1.6)
 				local move = Vector3.new(0, 0, 0)
 				if enemy.kind == "Shooter" then
-					-- Keep its distance: close in when far, back off when near.
 					if dist > def.PreferredMax then
 						move = flat.Unit * speed * dt
 					elseif dist < def.PreferredMin then
 						move = -flat.Unit * speed * 0.8 * dt
 					else
-						-- Strafe slowly so it is not a still target.
 						local side = Vector3.new(-flat.Z, 0, flat.X)
 						if side.Magnitude > 0.01 then
 							move = side.Unit * speed * 0.35 * dt * math.sin(now * 0.7)
 						end
 					end
-					-- Fire when it can see the player (cover blocks the shot).
 					if now - enemy.lastShot >= def.ShotCooldown and dist < 70 then
 						local losParams = RaycastParams.new()
 						losParams.FilterType = Enum.RaycastFilterType.Include
@@ -492,8 +514,6 @@ local function updateEnemies(dt: number)
 					end
 				end
 				enemy.pos += move
-				-- Walkers must not clip through cover: push out of any
-				-- cover block's footprint (axis-aligned, smallest push).
 				for _, cover in ipairs(coverParts) do
 					local c = cover.Position
 					local hs = cover.Size / 2 + Vector3.new(1.2, 0, 1.2)
@@ -507,8 +527,6 @@ local function updateEnemies(dt: number)
 						end
 					end
 				end
-				-- Face the player and walk: limbs swing around the
-				-- shoulder/hip pivots, arms opposite to legs.
 				if dist > 0.01 then
 					enemy.yaw = math.atan2(-flat.X, -flat.Z)
 				end
@@ -529,7 +547,6 @@ local function updateEnemies(dt: number)
 				if parts.gun then
 					parts.gun.CFrame = torsoCF * CFrame.new(1.5 * s, -0.4 * s, -0.7 * s)
 				end
-				-- Contact damage (horizontal distance only; both on foot).
 				if dist < def.ContactRadius and now - enemy.lastTouch >= def.ContactCooldown then
 					enemy.lastTouch = now
 					hurtPlayer(targetPlayer, def.ContactDamage)
@@ -568,6 +585,7 @@ local function sendSnapshot()
 	local maxHp = StrikeConfig.PlayerMaxHealth
 	local ammoList = { StrikeConfig.Weapons[1].Mag, StrikeConfig.Weapons[2].Mag, StrikeConfig.Weapons[3].Mag }
 	local reloading = false
+	local armor = 0
 	local first = Players:GetPlayers()[1]
 	if first then
 		local humanoid = getPlayerHumanoid(first)
@@ -578,7 +596,12 @@ local function sendSnapshot()
 		if g then
 			ammoList = { g.ammo[1], g.ammo[2], g.ammo[3] }
 			reloading = g.reloading
+			armor = g.armor
 		end
+	end
+	local foes = {}
+	for _, e in ipairs(state.enemies) do
+		table.insert(foes, { math.floor(e.pos.X), math.floor(e.pos.Z), e.kind })
 	end
 	local snapshot = {
 		phase = state.phase,
@@ -595,6 +618,9 @@ local function sendSnapshot()
 		queued = state.spawnQueue,
 		intermission = math.max(math.ceil(state.intermissionTimer), 0),
 		kills = state.kills,
+		credits = state.credits,
+		armor = armor,
+		foes = foes,
 	}
 	for _, player in ipairs(Players:GetPlayers()) do
 		remotes:FireClient(player, "Snapshot", snapshot)
@@ -604,7 +630,6 @@ end
 local snapshotTimer = 0
 local function onHeartbeat(dt: number)
 	if state.phase == "playing" then
-		-- Combo decay.
 		if state.combo > 0 then
 			state.comboTimer -= dt
 			if state.comboTimer <= 0 then
@@ -612,7 +637,6 @@ local function onHeartbeat(dt: number)
 				state.comboTimer = 0
 			end
 		end
-		-- Reload completion: refill the weapon being reloaded.
 		local now = os.clock()
 		for _, g in pairs(gun) do
 			if g.reloading and now >= g.reloadEnd then
@@ -620,7 +644,6 @@ local function onHeartbeat(dt: number)
 				g.ammo[g.reloadWeapon] = StrikeConfig.Weapons[g.reloadWeapon].Mag
 			end
 		end
-		-- Spawning.
 		if state.spawnQueue > 0 and #state.enemies < StrikeConfig.WaveMaxAlive then
 			state.spawnTimer -= dt
 			if state.spawnTimer <= 0 then
@@ -631,11 +654,10 @@ local function onHeartbeat(dt: number)
 		end
 		updateEnemies(dt)
 		updateProjectiles(dt)
-		-- Wave cleared.
 		if state.spawnQueue <= 0 and #state.enemies == 0 then
 			local bonus = StrikeConfig.WaveClearBonus + StrikeConfig.WaveClearBonusPerWave * state.wave
 			state.score += bonus
-			-- Stray projectiles must not hang frozen in the air.
+			state.credits = math.min(state.credits + StrikeConfig.WaveClearCredits, StrikeConfig.CreditCap)
 			for _, proj in ipairs(state.projectiles) do
 				proj.part:Destroy()
 			end
@@ -663,13 +685,11 @@ local function onHeartbeat(dt: number)
 end
 
 function StrikeServer.start()
-	-- Cover parts, for the shooters' line-of-sight checks.
 	for _, child in ipairs(Workspace:GetChildren()) do
 		if child:IsA("BasePart") and string.match(child.Name, "^Cover%d+$") then
 			table.insert(coverParts, child)
 		end
 	end
-	-- The single RemoteEvent every client talks through.
 	remotes = Instance.new("RemoteEvent")
 	remotes.Name = "StrikeRemotes"
 	remotes.Parent = ReplicatedStorage
@@ -677,7 +697,6 @@ function StrikeServer.start()
 
 	Players.PlayerAdded:Connect(function(player: Player)
 		getGun(player)
-		-- Keep the gun state fresh if the character reloads.
 		player.CharacterAdded:Connect(function(character: Model)
 			local humanoid = character:WaitForChild("Humanoid")
 			if humanoid:IsA("Humanoid") then

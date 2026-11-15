@@ -1,6 +1,3 @@
--- StrikeGui: the shared neon look. Every screen the client builds goes
--- through these helpers so the palette, corners, glow and text size stay
--- identical across the start screen, the HUD and the end screen.
 
 local StrikeConfig = require(script.Parent.StrikeConfig)
 
@@ -9,11 +6,6 @@ local StrikeGui = {}
 local FONT_TITLE = Enum.Font.Arcade
 local FONT_BODY = Enum.Font.GothamBold
 
--- A plain full-bleed frame with no corner and no outline (backgrounds).
--- NOTE: never set one of these opaque over the 3D view — a ScreenGui
--- renders above the viewport, so an opaque full-screen frame hides the
--- whole game. Full-screen frames here are always fully transparent
--- unless they are a menu dim layer (see newDimLayer).
 function StrikeGui.newPlainFrame(name: string, parent: Instance): Frame
 	local frame = Instance.new("Frame")
 	frame.Name = name
@@ -71,7 +63,6 @@ function StrikeGui.newTitleLabel(name: string, parent: Instance, text: string, t
 	return label
 end
 
--- A glowing neon button: bright fill, thick outline, big readable text.
 function StrikeGui.newButton(
 	name: string,
 	parent: Instance,
@@ -100,7 +91,6 @@ function StrikeGui.newButton(
 	return button
 end
 
--- A full-screen dim layer behind a menu so the arena stays visible.
 function StrikeGui.newDimLayer(name: string, parent: Instance): Frame
 	local dim = Instance.new("Frame")
 	dim.Name = name
@@ -112,7 +102,6 @@ function StrikeGui.newDimLayer(name: string, parent: Instance): Frame
 	return dim
 end
 
--- A thin neon bar (health, combo timer).
 function StrikeGui.newBar(name: string, parent: Instance, fillColor: Color3): (Frame, Frame)
 	local back = Instance.new("Frame")
 	back.Name = name .. "Back"
